@@ -16,6 +16,7 @@ namespace nothinbutdotnetstore.tests.web
             context c = () =>
             {
                 request = an<Request>();
+                command = an<Command>();
                 command_factory = the_dependency<CommandFactory>();
             };
 
@@ -29,8 +30,14 @@ namespace nothinbutdotnetstore.tests.web
                 command_factory.received(factory => factory.create_from(request));
             };
 
+            private it should_execute_the_command = () =>
+            {
+                command.received(cmd => cmd.execute());
+            };
+
             static Request request;
             static CommandFactory command_factory;
+            private static Command command;
         }
     }
 }
