@@ -41,8 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="web\infrastructure\CommandFactory.cs" />
+    <Compile Include="web\infrastructure\CommandRegistry.cs" />
     <Compile Include="web\infrastructure\Command.cs" />
+    <Compile Include="web\infrastructure\DefaultCommandRegistry.cs" />
     <Compile Include="web\infrastructure\DefaultFrontController.cs" />
     <Compile Include="web\infrastructure\FrontController.cs" />
     <Compile Include="web\infrastructure\FrontControllerRequestFactory.cs" />

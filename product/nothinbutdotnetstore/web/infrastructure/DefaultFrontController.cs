@@ -2,16 +2,16 @@ namespace nothinbutdotnetstore.web.infrastructure
 {
     public class DefaultFrontController : FrontController
     {
-        CommandFactory command_factory;
+        CommandRegistry command_registry;
 
-        public DefaultFrontController(CommandFactory command_factory)
+        public DefaultFrontController(CommandRegistry command_registry)
         {
-            this.command_factory = command_factory;
+            this.command_registry = command_registry;
         }
 
         public void process(Request request)
         {
-            command_factory.create_from(request).execute();
+            command_registry.get_command_that_can_process(request).process(request);
         }
     }
 }
