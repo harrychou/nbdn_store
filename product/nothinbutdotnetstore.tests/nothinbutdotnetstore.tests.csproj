@@ -70,8 +70,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MessageGeneratorSpecs.cs" />
     <Compile Include="utility\empty_test_fixture_for_test_driven.cs" />
+    <Compile Include="web\SomeThingSpecs.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\nothinbutdotnetstore\nothinbutdotnetstore.csproj">
