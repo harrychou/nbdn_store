@@ -7,7 +7,7 @@ using developwithpassion.bdd.harnesses.mbunit;
 using developwithpassion.bdd.mocking.rhino;
 using Rhino.Mocks;
 
-namespace nothinbutdotnetstore.tests.web
+namespace nothinbutdotnetstore.tests.utility
 {
     public class SomethingSpecs
     {
@@ -31,15 +31,6 @@ namespace nothinbutdotnetstore.tests.web
                 change(() => Thread.CurrentPrincipal).to(my_principal);
             };
 
-//            public override Something create_sut()
-//            {
-//                throw new NotImplementedException();
-//            }
-
-            after_the_sut_has_been_created ac = () =>
-            {
-                
-            };
 
             because b = () =>
             {

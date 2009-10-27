@@ -41,7 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="web\" />
+    <Compile Include="web\infrastructure\FrontController.cs" />
+    <Compile Include="web\infrastructure\FrontControllerRequestFactory.cs" />
+    <Compile Include="web\infrastructure\RequestHandler.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
