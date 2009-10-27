@@ -15,6 +15,8 @@ _ReSharper.*
 local_properties.rb
 artifacts
 /product/config/app.config.vista
+/product/nothinbutdotnetstore.web.ui/*.xml
+/product/nothinbutdotnetstore.web.ui/web.config
 /product/config/app.config.xp
-/product/config/log4net.config.xml
+/product/config/*.xml
 *.orig
