@@ -1,25 +1,23 @@
-using System;
 using System.Collections.Generic;
+
+using System.Linq;
 
 namespace nothinbutdotnetstore.web.infrastructure
 {
     public class DefaultCommandRegistry : CommandRegistry
     {
-        readonly IEnumerable<Command> commands;
 
-        public DefaultCommandRegistry(IEnumerable<Command> commands)
+        private IEnumerable<Command> command_list;
+
+        public DefaultCommandRegistry(IEnumerable<Command> command_list)
         {
-            this.commands = commands;
+            this.command_list = command_list;
         }
 
         public Command get_command_that_can_process(Request request)
         {
-            foreach (var command in commands)
-            {
-                if (command.can_handle(request)) return command;
-            }
 
-            return new MissingCommand();
+            return command_list.FirstOrDefault(command => command.can_handle(request)) ?? new MissingCommand();
         }
     }
 }
