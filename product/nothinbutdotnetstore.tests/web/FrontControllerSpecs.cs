@@ -3,6 +3,7 @@ using developwithpassion.bdd.harnesses.mbunit;
 using developwithpassion.bdd.mocking.rhino;
 using developwithpassion.bdddoc.core;
 using nothinbutdotnetstore.web.infrastructure;
+using Rhino.Mocks;
 
 namespace nothinbutdotnetstore.tests.web
 {
@@ -18,6 +19,8 @@ namespace nothinbutdotnetstore.tests.web
                 request = an<Request>();
                 command = an<Command>();
                 command_factory = the_dependency<CommandFactory>();
+
+                command_factory.Stub(factory => factory.create_from(request)).Return(command);
             };
 
             because b = () =>
