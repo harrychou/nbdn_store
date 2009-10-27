@@ -5,16 +5,16 @@ namespace nothinbutdotnetstore.web.infrastructure
 {
     public class DefaultCommandRegistry : CommandRegistry
     {
-        private IEnumerable<Command> _commandList;
+        private IEnumerable<Command> command_list;
 
-        public DefaultCommandRegistry(IEnumerable<Command> commandList)
+        public DefaultCommandRegistry(IEnumerable<Command> command_list)
         {
-            _commandList = commandList;
+            this.command_list = command_list;
         }
 
         public Command get_command_that_can_process(Request request)
         {
-            foreach(Command command in _commandList )
+            foreach(var command in command_list )
             {
                 if( command.can_handle( request ))
                 {
