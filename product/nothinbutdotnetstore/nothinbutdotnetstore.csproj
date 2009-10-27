@@ -41,11 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommandFactory.cs" />
+    <Compile Include="web\infrastructure\CommandRegistry.cs" />
     <Compile Include="web\infrastructure\Command.cs" />
+    <Compile Include="web\infrastructure\DefaultCommandRegistry.cs" />
     <Compile Include="web\infrastructure\DefaultFrontController.cs" />
     <Compile Include="web\infrastructure\FrontController.cs" />
     <Compile Include="web\infrastructure\FrontControllerRequestFactory.cs" />
+    <Compile Include="web\infrastructure\MissingCommand.cs" />
     <Compile Include="web\infrastructure\Request.cs" />
     <Compile Include="web\infrastructure\RequestHandler.cs" />
   </ItemGroup>
