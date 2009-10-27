@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -7,6 +6,8 @@ namespace nothinbutdotnetstore.web.infrastructure
     public class DefaultCommandRegistry : CommandRegistry
     {
         private IEnumerable<Command> command_list;
+
+        public DefaultCommandRegistry():this(new List<Command>()) {}
 
         public DefaultCommandRegistry(IEnumerable<Command> command_list)
         {
