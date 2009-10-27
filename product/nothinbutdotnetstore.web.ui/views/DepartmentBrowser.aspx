@@ -2,7 +2,7 @@
 <%@ Page Language="C#" AutoEventWireup="true" 
 Inherits="System.Web.UI.Page" MasterPageFile="Store.master" %>
 <asp:Content ID="content" runat="server" ContentPlaceHolderID="childContentPlaceHolder">
-    <p class="ListHead">Select An Isle</p>
+    <p class="ListHead">Select An Department</p>
 
             <table>            
 		<!-- for each of the main departments in the store -->
