@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace nothinbutdotnetstore.web.infrastructure
 {
@@ -14,14 +15,7 @@ namespace nothinbutdotnetstore.web.infrastructure
 
         public Command get_command_that_can_process(Request request)
         {
-            foreach(var command in command_list )
-            {
-                if( command.can_handle( request ))
-                {
-                    return command;
-                }
-            }
-            return new MissingCommand();
+            return command_list.FirstOrDefault(command => command.can_handle(request)) ?? new MissingCommand();
         }
     }
 }
