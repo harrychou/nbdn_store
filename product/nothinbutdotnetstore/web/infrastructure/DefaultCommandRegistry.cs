@@ -21,7 +21,7 @@ namespace nothinbutdotnetstore.web.infrastructure
                     return command;
                 }
             }
-            return null;
+            return new MissingCommand();
         }
     }
 }
