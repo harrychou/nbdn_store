@@ -1,4 +1,3 @@
-using System;
 using System.Web;
 
 namespace nothinbutdotnetstore.web.infrastructure
@@ -8,10 +7,10 @@ namespace nothinbutdotnetstore.web.infrastructure
         FrontControllerRequestFactory request_factory;
         FrontController front_controller;
 
-        public RequestHandler(FrontControllerRequestFactory requestFactory, FrontController frontController)
+        public RequestHandler(FrontControllerRequestFactory request_factory, FrontController frontController)
         {
-            this.request_factory = requestFactory;
-            this.front_controller = frontController;
+            this.request_factory = request_factory;
+            front_controller = frontController;
         }
 
         public void ProcessRequest(HttpContext context)
@@ -21,7 +20,7 @@ namespace nothinbutdotnetstore.web.infrastructure
 
         public bool IsReusable
         {
-            get { throw new NotImplementedException(); }
+            get { return true; }
         }
     }
 }

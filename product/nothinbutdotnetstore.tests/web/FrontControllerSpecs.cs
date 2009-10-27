@@ -1,3 +1,4 @@
+using System;
 using developwithpassion.bdd.contexts;
 using developwithpassion.bdd.harnesses.mbunit;
 using developwithpassion.bdd.mocking.rhino;
@@ -17,9 +18,11 @@ namespace nothinbutdotnetstore.tests.web
             context c = () =>
             {
                 request = an<Request>();
-                command_factory = the_dependency<CommandFactory>();
+
                 command = an<Command>();
-                command_factory.Stub(factory => factory.create_from(request)).Return(command);
+                command_registry = the_dependency<CommandRegistry>();
+
+                command_registry.Stub(factory => factory.get_command_that_can_process(request)).Return(command);
             };
 
             because b = () =>
@@ -27,9 +30,10 @@ namespace nothinbutdotnetstore.tests.web
                 sut.process(request);
             };
 
-            it should_delegate_the_command_selection_to_the_command_factory = () =>
+
+            it should_delegate_the_processing_to_the_command_for_the_request = () =>
             {
-                command_factory.received(factory => factory.create_from(request));
+                command.received(cmd => cmd.process(request));
             };
 
             it should_receive_a_command_from_factory = () => 
@@ -38,8 +42,10 @@ namespace nothinbutdotnetstore.tests.web
             };
 
             static Request request;
-            static CommandFactory command_factory;
+
+            static CommandRegistry command_registry;
             static Command command;
         }
+
     }
 }
