@@ -11,7 +11,8 @@ namespace nothinbutdotnetstore.web.infrastructure
 
         public void process(Request request)
         {
-            command_factory.create_from(request);
+            var command = command_factory.create_from(request);
+            command.process(request);
         }
     }
 }

@@ -3,6 +3,7 @@ using developwithpassion.bdd.harnesses.mbunit;
 using developwithpassion.bdd.mocking.rhino;
 using developwithpassion.bdddoc.core;
 using nothinbutdotnetstore.web.infrastructure;
+using Rhino.Mocks;
 
 namespace nothinbutdotnetstore.tests.web
 {
@@ -17,6 +18,8 @@ namespace nothinbutdotnetstore.tests.web
             {
                 request = an<Request>();
                 command_factory = the_dependency<CommandFactory>();
+                command = an<Command>();
+                command_factory.Stub(factory => factory.create_from(request)).Return(command);
             };
 
             because b = () =>
@@ -29,8 +32,14 @@ namespace nothinbutdotnetstore.tests.web
                 command_factory.received(factory => factory.create_from(request));
             };
 
+            it should_receive_a_command_from_factory = () => 
+            {
+                command.received(command1 => command1.process(request));
+            };
+
             static Request request;
             static CommandFactory command_factory;
+            static Command command;
         }
     }
 }
