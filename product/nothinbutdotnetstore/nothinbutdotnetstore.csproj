@@ -44,12 +44,15 @@
     <Compile Include="web\infrastructure\CommandRegistry.cs" />
     <Compile Include="web\infrastructure\Command.cs" />
     <Compile Include="web\infrastructure\DefaultCommandRegistry.cs" />
+    <Compile Include="web\infrastructure\DefaultDepartmentStoreService.cs" />
     <Compile Include="web\infrastructure\DefaultFrontController.cs" />
     <Compile Include="web\infrastructure\FrontController.cs" />
     <Compile Include="web\infrastructure\FrontControllerRequestFactory.cs" />
     <Compile Include="web\infrastructure\MissingCommand.cs" />
     <Compile Include="web\infrastructure\Request.cs" />
     <Compile Include="web\infrastructure\RequestHandler.cs" />
+    <Compile Include="web\infrastructure\Service.cs" />
+    <Compile Include="web\infrastructure\ViewDepartmentStoreCommand.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

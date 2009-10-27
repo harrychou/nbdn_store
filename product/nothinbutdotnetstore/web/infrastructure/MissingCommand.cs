@@ -4,7 +4,7 @@ namespace nothinbutdotnetstore.web.infrastructure
 {
     public class MissingCommand : Command
     {
-        public void process(Request request)
+        public object process(Request request)
         {
             throw new NotImplementedException();
         }

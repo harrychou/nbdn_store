@@ -19,6 +19,8 @@ namespace nothinbutdotnetstore.tests.web
                 request = an<Request>();
                 all_commands = new List<Command>();
                 provide_a_basic_sut_constructor_argument<IEnumerable<Command>>(all_commands);
+
+           
             };
 
             static protected IList<Command> all_commands;
