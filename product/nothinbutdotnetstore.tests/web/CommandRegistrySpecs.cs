@@ -63,7 +63,7 @@ namespace nothinbutdotnetstore.tests.web
 
             it should_return_a_missing_command_to_the_client = () =>
             {
-                result.should_be_an_instance_of<MissingCommand>()
+                result.should_be_an_instance_of<MissingCommand>();
             };
 
         }

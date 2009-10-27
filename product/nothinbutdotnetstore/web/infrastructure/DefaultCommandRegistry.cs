@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 
 namespace nothinbutdotnetstore.web.infrastructure
@@ -19,7 +18,7 @@ namespace nothinbutdotnetstore.web.infrastructure
                 if (command.can_handle(request)) return command;
             }
 
-            return null;
+            return new MissingCommand();
         }
     }
 }
