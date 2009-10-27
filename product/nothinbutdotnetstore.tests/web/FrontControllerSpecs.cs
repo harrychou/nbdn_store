@@ -18,6 +18,7 @@ namespace nothinbutdotnetstore.tests.web
             context c = () =>
             {
                 request = an<Request>();
+
                 command = an<Command>();
                 command_registry = the_dependency<CommandRegistry>();
 
@@ -36,6 +37,7 @@ namespace nothinbutdotnetstore.tests.web
             };
 
             static Request request;
+
             static CommandRegistry command_registry;
             static Command command;
         }
