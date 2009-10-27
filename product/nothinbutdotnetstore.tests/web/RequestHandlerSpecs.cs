@@ -20,7 +20,7 @@ namespace nothinbutdotnetstore.tests.web
             context c = () =>
             {
                 http_context = ObjectMother.create_http_context();
-                request = new object();
+                request = an<Request>();
                 front_controller = the_dependency<FrontController>();
                 request_factory = the_dependency<FrontControllerRequestFactory>();
                 request_factory.Stub(factory => factory.create_from(http_context)).Return(request);
@@ -37,7 +37,7 @@ namespace nothinbutdotnetstore.tests.web
             };
 
             static FrontController front_controller;
-            static object request;
+            static Request request;
             static HttpContext http_context;
             static FrontControllerRequestFactory request_factory;
         }

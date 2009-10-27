@@ -5,19 +5,18 @@ namespace nothinbutdotnetstore.web.infrastructure
 {
     public class RequestHandler : IHttpHandler
     {
-        private readonly FrontControllerRequestFactory requestFactory;
-        private readonly FrontController frontController;
+        FrontControllerRequestFactory request_factory;
+        FrontController front_controller;
 
         public RequestHandler(FrontControllerRequestFactory requestFactory, FrontController frontController)
         {
-            this.requestFactory = requestFactory;
-            this.frontController = frontController;
+            this.request_factory = requestFactory;
+            this.front_controller = frontController;
         }
 
         public void ProcessRequest(HttpContext context)
         {
-            var request = requestFactory.create_from(context);
-            frontController.process(request);
+            front_controller.process(request_factory.create_from(context));
         }
 
         public bool IsReusable

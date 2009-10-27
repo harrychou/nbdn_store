@@ -4,6 +4,6 @@ namespace nothinbutdotnetstore.web.infrastructure
 {
     public interface FrontControllerRequestFactory
     {
-        object create_from(HttpContext http_context);
+        Request create_from(HttpContext http_context);
     }
 }
