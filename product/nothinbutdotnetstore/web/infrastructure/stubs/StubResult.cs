@@ -1,16 +1,16 @@
 using System;
 using System.Web;
+using nothinbutdotnetstore.web.application;
 
 namespace nothinbutdotnetstore.web.infrastructure.stubs
 {
     public class StubResult : Result
     {
-        public void render()
+        public void render(object data)
         {
-            HttpContext.Current.Items["data"] = data;
-            HttpContext.Current.Response.Redirect("DepartmentBrowser.aspx");
+            HttpContext.Current.Items[DataKeys.departments] = data;
+            HttpContext.Current.Server.Transfer("DepartmentBrowser.aspx");
         }
 
-        public object data{get;set;}
     }
 }
