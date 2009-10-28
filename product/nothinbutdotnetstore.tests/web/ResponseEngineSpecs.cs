@@ -30,7 +30,7 @@ namespace nothinbutdotnetstore.tests.web
 
             because b = () =>
             {
-                sut.display(view_model);
+                 sut.display(view_model);
             };
 
             it should_transfer_control_to_the_view_to_render = () =>

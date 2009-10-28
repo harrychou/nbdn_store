@@ -1,5 +1,3 @@
-using System.Web;
-
 namespace nothinbutdotnetstore.web.infrastructure
 {
     public class DefaultResponseEngine : ResponseEngine
@@ -7,7 +5,6 @@ namespace nothinbutdotnetstore.web.infrastructure
         ViewFactory renderer;
         TransferBehaviour transfer_behaviour;
 
-        public DefaultResponseEngine() : this(new DefaultViewFactory(), (handler, form) => HttpContext.Current.Server.Transfer(handler, form)) {}
 
         public DefaultResponseEngine(ViewFactory renderer, TransferBehaviour transfer_behaviour)
         {
