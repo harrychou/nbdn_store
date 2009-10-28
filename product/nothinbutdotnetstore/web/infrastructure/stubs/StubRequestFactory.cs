@@ -14,17 +14,32 @@ namespace nothinbutdotnetstore.web.infrastructure.stubs
 
             if (url.PathAndQuery.Contains(DataKeys.view_sub_department_action))
             {
-                throw new NotImplementedException();
+                return new StubRequest(DataKeys.view_sub_department_action);
             }
 
             if (url.PathAndQuery.Contains(DataKeys.view_main_department_action))
             {
-                throw new NotImplementedException();
+                return new StubRequest(DataKeys.view_main_department_action);
             }
 
             return result;
         }
 
+       
+    }
 
+    public class StubRequest : Request
+    {
+        public StubRequest(string action_name)
+        {
+            this.action_name = action_name;
+        }
+
+        public InputModel map<InputModel>()
+        {
+           throw new NotImplementedException();
+        }
+
+        public string action_name { get; set; }
     }
 }
