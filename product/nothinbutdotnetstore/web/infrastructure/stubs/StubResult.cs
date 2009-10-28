@@ -7,7 +7,7 @@ namespace nothinbutdotnetstore.web.infrastructure.stubs
     {
         public void render()
         {
-            HttpContext.Current.Items["data"] = "DLXD";
+            HttpContext.Current.Items["data"] = data;
             HttpContext.Current.Response.Redirect("DepartmentBrowser.aspx");
         }
 
