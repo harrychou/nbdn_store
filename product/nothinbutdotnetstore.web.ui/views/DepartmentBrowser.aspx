@@ -8,7 +8,7 @@ Inherits="nothinbutdotnetstore.web.ui.views.DepartmentBrowser" MasterPageFile="S
                 <% foreach (var item in model) {%>
                 	<tr class="ListItem">
                    		 <td>                     
-                   		 <%= item.name %>
+                   		 <a href="view_sub_dept.store?<%= item.id %>"><%= item.name %></a>
                     	</td>
                  	 </tr>        
 <%} %>

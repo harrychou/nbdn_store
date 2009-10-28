@@ -12,8 +12,12 @@ namespace nothinbutdotnetstore.web.infrastructure
             : this(
                 new List<Command>
                 {
-                    new DefaultCommand(request => true,
-                                       new ViewMainDepartments())
+                    new DefaultCommand(
+                        request => (request.action_name == DataKeys.view_sub_department_action),
+                                       new ViewSubDepartmentCommand()),
+                    new DefaultCommand(
+                        request => (request.action_name == DataKeys.view_main_department_action),
+                                       new ViewMainDepartments()),
                 }
                 ) {}
 

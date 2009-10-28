@@ -1,18 +1,19 @@
+using System;
 using nothinbutdotnetstore.tasks;
 using nothinbutdotnetstore.tasks.stubs;
 using nothinbutdotnetstore.web.infrastructure;
 
 namespace nothinbutdotnetstore.web.application
 {
-    public class ViewMainDepartments : ApplicationCommand
+    public class ViewSubDepartmentCommand: ApplicationCommand
     {
         ResponseEngine _responseEngine;
         CatalogTasks service;
 
-        public ViewMainDepartments()
+        public ViewSubDepartmentCommand()
             : this(new DefaultResponseEngine(), new StubViewMainDepartmentTasks()) {}
 
-        public ViewMainDepartments(ResponseEngine _responseEngine, CatalogTasks service)
+        public ViewSubDepartmentCommand(ResponseEngine _responseEngine, CatalogTasks service)
         {
             this._responseEngine = _responseEngine;
             this.service = service;
@@ -20,7 +21,8 @@ namespace nothinbutdotnetstore.web.application
 
         public void process(Request request)
         {
-            _responseEngine.display(service.get_main_departments());
+            Request<string> validRequest = request as Request<string>;
+            _responseEngine.display(service.get_sub_departments(validRequest.model));
         }
     }
 }
