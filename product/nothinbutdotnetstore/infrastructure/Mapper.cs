@@ -1,4 +1,4 @@
-namespace nothinbutdotnetstore.web.infrastructure
+namespace nothinbutdotnetstore.infrastructure
 {
     public interface Mapper<Input, Output> 
     {
