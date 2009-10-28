@@ -53,6 +53,9 @@
     <Reference Include="System.Web.Mobile" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="views\DepartmentBrowser.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="views\Store.master.cs">
       <DependentUpon>Store.master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

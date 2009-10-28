@@ -1,4 +1,5 @@
 using nothinbutdotnetstore.tasks;
+using nothinbutdotnetstore.tasks.stubs;
 using nothinbutdotnetstore.web.infrastructure;
 using nothinbutdotnetstore.web.infrastructure.stubs;
 
@@ -6,21 +7,21 @@ namespace nothinbutdotnetstore.web.application
 {
     public class ViewMainDepartments : ApplicationCommand
     {
-        Result result;
+        ResponseEngine _responseEngine;
         CatalogTasks service;
 
         public ViewMainDepartments()
-            : this(new StubResult(), new StubViewMainDepartmentTasks()) {}
+            : this(new DefaultResponseEngine(), new StubViewMainDepartmentTasks()) {}
 
-        public ViewMainDepartments(Result result, CatalogTasks service)
+        public ViewMainDepartments(ResponseEngine _responseEngine, CatalogTasks service)
         {
-            this.result = result;
+            this._responseEngine = _responseEngine;
             this.service = service;
         }
 
         public void process(Request request)
         {
-            result.render(service.get_main_departments());
+            _responseEngine.display(service.get_main_departments());
         }
     }
 }
