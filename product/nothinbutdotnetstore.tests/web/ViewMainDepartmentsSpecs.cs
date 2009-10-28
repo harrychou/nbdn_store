@@ -1,36 +1,37 @@
-using System.Collections;
 using System.Collections.Generic;
 using developwithpassion.bdd.contexts;
 using developwithpassion.bdd.harnesses.mbunit;
 using developwithpassion.bdd.mocking.rhino;
 using developwithpassion.bdddoc.core;
+using nothinbutdotnetstore.dto;
+using nothinbutdotnetstore.tasks;
 using nothinbutdotnetstore.web.application;
 using nothinbutdotnetstore.web.infrastructure;
 using Rhino.Mocks;
 
 namespace nothinbutdotnetstore.tests.web
  {   
-     public class ViewDepartmentCommandSpecs
+     public class ViewMainDepartmentsSpecs
      {
          public abstract class concern : observations_for_a_sut_with_a_contract<ApplicationCommand,
-                                             ViewDepartmentCommand>
+                                             ViewMainDepartments>
          {
         
          }
 
-         [Concern(typeof(ViewDepartmentCommand))]
+         [Concern(typeof(ViewMainDepartments))]
          public class when_user_requeste_to_view_departments : concern
          {
              context c = () =>
              {
                  request = an<Request>();
-                 result = the_dependency<Result>();
+                 _responseEngine = the_dependency<ResponseEngine>();
                  provide_a_basic_sut_constructor_argument("DepartmentBrowser.aspx");
-                 service = the_dependency<ViewDepartmentService>();
+                 service = the_dependency<CatalogTasks>();
 
-                 departmentList = new List<string> {"Dept1"};
+                 department_list = new List<DepartmentItem>();
 
-                 service.Stub(service1 => service1.GetDepartmentName()).Return(departmentList);
+                 service.Stub(service1 => service1.get_main_departments()).Return(department_list);
              };
 
              because b = () =>
@@ -40,16 +41,13 @@ namespace nothinbutdotnetstore.tests.web
 
              it should_render_a_list_of_department_names_to_the_renderer = () =>
              {
-                 result.data.should_be_equal_to(departmentList);
-                 result.received(result1 => result1.render());
+                 _responseEngine.received(result1 => result1.display(department_list));
              };
 
-             static IEnumerable<string> department_names;
              static Request request;
-             static Result result;
-             static string view_name;
-             static ViewDepartmentService service;
-             static IEnumerable<string> departmentList;
+             static ResponseEngine _responseEngine;
+             static CatalogTasks service;
+             static IEnumerable<DepartmentItem> department_list;
          }
      }
  }
