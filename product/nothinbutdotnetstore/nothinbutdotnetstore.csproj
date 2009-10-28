@@ -44,7 +44,13 @@
     <Compile Include="dto\DepartmentItem.cs" />
     <Compile Include="tasks\CatalogTasks.cs" />
     <Compile Include="web\application\DataKeys.cs" />
-    <Compile Include="web\infrastructure\stubs\StubResult.cs" />
+    <Compile Include="web\infrastructure\ViewBuilder.cs" />
+    <Compile Include="web\infrastructure\ViewForModel.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="web\infrastructure\DefaultViewBuilder.cs" />
+    <Compile Include="web\infrastructure\DefaultResponseEngine.cs">
+    </Compile>
     <Compile Include="web\infrastructure\stubs\StubViewMainDepartmentsTasks.cs" />
     <Compile Include="web\application\ViewMainDepartments.cs" />
     <Compile Include="web\infrastructure\ApplicationCommand.cs" />
@@ -58,7 +64,7 @@
     <Compile Include="web\infrastructure\MissingCommand.cs" />
     <Compile Include="web\infrastructure\Request.cs" />
     <Compile Include="web\infrastructure\RequestHandler.cs" />
-    <Compile Include="web\infrastructure\Result.cs" />
+    <Compile Include="web\infrastructure\ResponseEngine.cs" />
     <Compile Include="web\infrastructure\stubs\StubRequestFactory.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

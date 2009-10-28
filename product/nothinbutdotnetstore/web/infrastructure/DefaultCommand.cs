@@ -14,8 +14,8 @@ namespace nothinbutdotnetstore.web.infrastructure
 
         }
 
-        public void process(Request request) {
-        
+        public void process(Request request) 
+        {
             application_command.process(request);
         }
 

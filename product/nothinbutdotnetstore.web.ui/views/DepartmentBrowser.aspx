@@ -1,6 +1,6 @@
 <%@ MasterType VirtualPath="Store.master" %>
 <%@ Page Language="C#" AutoEventWireup="true" 
-Inherits="System.Web.UI.Page" MasterPageFile="Store.master" %>
+Inherits="nothinbutdotnetstore.web.ui.views.DepartmentBrowser" MasterPageFile="Store.master" %>
 <%@ Import Namespace="System.Collections.Generic" %>
 <%@ Import Namespace="nothinbutdotnetstore.dto" %>
 <%@ Import Namespace="nothinbutdotnetstore.web.application" %>
@@ -9,7 +9,7 @@ Inherits="System.Web.UI.Page" MasterPageFile="Store.master" %>
 
             <table>            
             
-                <% foreach (var department_item in ((IEnumerable<DepartmentItem>)HttpContext.Current.Items[DataKeys.departments])) {%>
+                <% foreach (var department_item in view_model) {%>
         	<tr class="ListItem">
                		 <td>                     
                		 <%= department_item.name %>
