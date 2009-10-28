@@ -52,6 +52,7 @@
     <Compile Include="web\application\ApplicationCommand.cs" />
     <Compile Include="web\application\DataKeys.cs" />
     <Compile Include="web\application\ViewDepartmentProducts.cs" />
+    <Compile Include="web\application\ViewModelDisplay.cs" />
     <Compile Include="web\infrastructure\PageFactory.cs" />
     <Compile Include="web\infrastructure\DefaultRequest.cs" />
     <Compile Include="web\infrastructure\MapperRegistry.cs" />
