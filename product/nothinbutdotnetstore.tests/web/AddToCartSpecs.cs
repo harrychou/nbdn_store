@@ -35,7 +35,7 @@ namespace nothinbutdotnetstore.tests.web
              };
 
         
-             it should_add_the_correct_quantity_and_product_id = () =>
+             it should_send_a_message_to_add_a_product_to_the_cart = () =>
              {
                  service.received(service1 => service1.add_product_to_cart(input_model));
              };

@@ -1,4 +1,4 @@
-using System;
+using System.Data;
 using nothinbutdotnetstore.dto;
 using nothinbutdotnetstore.tasks;
 using nothinbutdotnetstore.web.infrastructure;
@@ -6,8 +6,8 @@ using nothinbutdotnetstore.web.infrastructure;
 namespace nothinbutdotnetstore.web.application
 {
     public class ViewDepartmentProducts : ApplicationCommand {
-        private readonly ResponseEngine response_engine;
-        private readonly CatalogTasks catalog_tasks;
+        ResponseEngine response_engine;
+        CatalogTasks catalog_tasks;
 
         public ViewDepartmentProducts(ResponseEngine response_engine, CatalogTasks catalog_tasks)
         {

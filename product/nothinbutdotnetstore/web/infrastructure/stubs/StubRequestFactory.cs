@@ -1,6 +1,4 @@
-using System;
 using System.Web;
-using nothinbutdotnetstore.web.application;
 
 namespace nothinbutdotnetstore.web.infrastructure.stubs
 {
@@ -8,38 +6,9 @@ namespace nothinbutdotnetstore.web.infrastructure.stubs
     {
         public Request create_from(HttpContext http_context)
         {
-            var url = http_context.Request.Url;
-
-            Request result = null;
-
-            if (url.PathAndQuery.Contains(DataKeys.view_sub_department_action))
-            {
-                return new StubRequest(DataKeys.view_sub_department_action);
-            }
-
-            if (url.PathAndQuery.Contains(DataKeys.view_main_department_action))
-            {
-                return new StubRequest(DataKeys.view_main_department_action);
-            }
-
-            return result;
+            return new DefaultRequest(null);
         }
 
        
-    }
-
-    public class StubRequest : Request
-    {
-        public StubRequest(string action_name)
-        {
-            this.action_name = action_name;
-        }
-
-        public InputModel map<InputModel>()
-        {
-           throw new NotImplementedException();
-        }
-
-        public string action_name { get; set; }
     }
 }

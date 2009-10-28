@@ -2,7 +2,6 @@ namespace nothinbutdotnetstore.web.infrastructure
 {
     public class DefaultRequest : Request
     {
-        public string action_name { get; set; }
         MapperRegistry mapper_registry;
 
         public DefaultRequest(MapperRegistry mapper_registry)
