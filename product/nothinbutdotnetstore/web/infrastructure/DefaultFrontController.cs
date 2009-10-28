@@ -13,6 +13,7 @@ namespace nothinbutdotnetstore.web.infrastructure
 
         public void process(Request request)
         {
+
             command_registry.get_command_that_can_process(request).process(request);
         }
     }

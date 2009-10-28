@@ -41,6 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="dto\DepartmentItem.cs" />
+    <Compile Include="tasks\CatalogTasks.cs" />
+    <Compile Include="web\application\DataKeys.cs" />
+    <Compile Include="web\infrastructure\stubs\StubResult.cs" />
+    <Compile Include="web\infrastructure\stubs\StubViewMainDepartmentsTasks.cs" />
+    <Compile Include="web\application\ViewMainDepartments.cs" />
     <Compile Include="web\infrastructure\ApplicationCommand.cs" />
     <Compile Include="web\infrastructure\CommandRegistry.cs" />
     <Compile Include="web\infrastructure\Command.cs" />
@@ -52,10 +58,8 @@
     <Compile Include="web\infrastructure\MissingCommand.cs" />
     <Compile Include="web\infrastructure\Request.cs" />
     <Compile Include="web\infrastructure\RequestHandler.cs" />
+    <Compile Include="web\infrastructure\Result.cs" />
     <Compile Include="web\infrastructure\stubs\StubRequestFactory.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="web\application\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

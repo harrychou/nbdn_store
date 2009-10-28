@@ -1,7 +1,7 @@
 namespace nothinbutdotnetstore.web.infrastructure
 {
-    public interface Request
+    public interface Result
     {
-        string name { get; set; }
+        void render(object details);
     }
 }

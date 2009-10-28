@@ -1,3 +1,4 @@
+using System;
 using System.Web;
 
 namespace nothinbutdotnetstore.web.infrastructure.stubs
@@ -9,6 +10,12 @@ namespace nothinbutdotnetstore.web.infrastructure.stubs
             return new StubRequest();
         }
 
-        class StubRequest : Request {}
+        class StubRequest : Request {
+            public string name
+            {
+                get { throw new NotImplementedException(); }
+                set { throw new NotImplementedException(); }
+            }
+        }
     }
 }
