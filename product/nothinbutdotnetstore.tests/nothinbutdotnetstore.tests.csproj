@@ -74,11 +74,13 @@
     <Compile Include="utility\ObjectMother.cs" />
     <Compile Include="web\CommandRegistrySpecs.cs" />
     <Compile Include="web\CommandSpecs.cs" />
+    <Compile Include="web\DefaultRequestSpecs.cs" />
     <Compile Include="web\ResponseEngineSpecs.cs" />
     <Compile Include="web\ViewFactorySpecs.cs" />
     <Compile Include="web\ViewMainDepartmentsSpecs.cs" />
     <Compile Include="web\FrontControllerSpecs.cs" />
     <Compile Include="web\RequestHandlerSpecs.cs" />
+    <Compile Include="web\ViewProductsSpecs.cs" />
     <Compile Include="web\ViewSubDepartmentsSpecs.cs" />
   </ItemGroup>
   <ItemGroup>

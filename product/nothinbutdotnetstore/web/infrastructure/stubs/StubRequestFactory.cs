@@ -25,14 +25,6 @@ namespace nothinbutdotnetstore.web.infrastructure.stubs
             return result;
         }
 
-        class StubRequest : Request
-        {
-            public string action_name { get; set; }
 
-            public InputModel map<InputModel>()
-            {
-                throw new NotImplementedException();
-            }
-        }
     }
 }
