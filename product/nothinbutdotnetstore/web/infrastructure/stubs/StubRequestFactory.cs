@@ -1,5 +1,6 @@
 using System;
 using System.Web;
+using nothinbutdotnetstore.web.application;
 
 namespace nothinbutdotnetstore.web.infrastructure.stubs
 {
@@ -7,14 +8,30 @@ namespace nothinbutdotnetstore.web.infrastructure.stubs
     {
         public Request create_from(HttpContext http_context)
         {
-            return new StubRequest();
+            var url = http_context.Request.Url;
+
+            Request result = null;
+
+            if (url.PathAndQuery.Contains(DataKeys.view_sub_department_action))
+            {
+                throw new NotImplementedException();
+            }
+
+            if (url.PathAndQuery.Contains(DataKeys.view_main_department_action))
+            {
+                throw new NotImplementedException();
+            }
+
+            return result;
         }
 
-        class StubRequest : Request {
-            public string name
+        class StubRequest : Request
+        {
+            public string action_name { get; set; }
+
+            public InputModel map<InputModel>()
             {
-                get { throw new NotImplementedException(); }
-                set { throw new NotImplementedException(); }
+                throw new NotImplementedException();
             }
         }
     }

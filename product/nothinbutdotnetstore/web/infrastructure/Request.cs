@@ -1,7 +1,9 @@
 namespace nothinbutdotnetstore.web.infrastructure
 {
-    public interface Request
+    public interface Request 
     {
-        string name { get; set; }
+        InputModel map<InputModel>();
+        string action_name { get; set; }
     }
+
 }

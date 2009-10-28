@@ -25,8 +25,7 @@ namespace nothinbutdotnetstore.tests.web
              context c = () =>
              {
                  request = an<Request>();
-                 _responseEngine = the_dependency<ResponseEngine>();
-                 provide_a_basic_sut_constructor_argument("DepartmentBrowser.aspx");
+                 response_engine = the_dependency<ResponseEngine>();
                  service = the_dependency<CatalogTasks>();
 
                  department_list = new List<DepartmentItem>();
@@ -41,11 +40,11 @@ namespace nothinbutdotnetstore.tests.web
 
              it should_render_a_list_of_department_names_to_the_renderer = () =>
              {
-                 _responseEngine.received(result1 => result1.display(department_list));
+                 response_engine.received(result1 => result1.display(department_list));
              };
 
              static Request request;
-             static ResponseEngine _responseEngine;
+             static ResponseEngine response_engine;
              static CatalogTasks service;
              static IEnumerable<DepartmentItem> department_list;
          }
