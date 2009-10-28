@@ -1,23 +1,19 @@
-using System.Data;
 using nothinbutdotnetstore.dto;
 using nothinbutdotnetstore.tasks;
 using nothinbutdotnetstore.web.infrastructure;
 
 namespace nothinbutdotnetstore.web.application
 {
-    public class ViewDepartmentProducts : ApplicationCommand {
-        ResponseEngine response_engine;
-        CatalogTasks catalog_tasks;
+    public class ViewDepartmentProducts : ApplicationCommand<CatalogTasks> {
 
-        public ViewDepartmentProducts(ResponseEngine response_engine, CatalogTasks catalog_tasks)
+        public ViewDepartmentProducts(ResponseEngine response_engine, CatalogTasks service)
+            : base(response_engine, service)
         {
-            this.response_engine = response_engine;
-            this.catalog_tasks = catalog_tasks;
         }
 
-        public void process(Request request)
+        public override void process(Request request)
         {
-            response_engine.display(catalog_tasks.get_all_products_in(request.map<DepartmentItem>()));
+            response_engine.display(service.get_all_products_in(request.map<DepartmentItem>()));
         }
     }
 }

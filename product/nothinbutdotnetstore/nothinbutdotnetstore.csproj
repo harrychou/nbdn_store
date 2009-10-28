@@ -48,8 +48,8 @@
     <Compile Include="infrastructure\Mapper.cs" />
     <Compile Include="tasks\CatalogTasks.cs" />
     <Compile Include="tasks\ShoppingCartTask.cs" />
-
     <Compile Include="web\application\AddToCart.cs" />
+    <Compile Include="web\application\ApplicationCommand.cs" />
     <Compile Include="web\application\DataKeys.cs" />
     <Compile Include="web\application\ViewDepartmentProducts.cs" />
     <Compile Include="web\infrastructure\PageFactory.cs" />
