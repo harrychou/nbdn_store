@@ -17,7 +17,12 @@ namespace nothinbutdotnetstore.web.application
 
         public void process(Request request)
         {
-            response_engine.display(service.get_all_subdepartments_in(request.map<DepartmentItem>()));
+            do_process(service.get_all_subdepartments_in(request.map<DepartmentItem>()));
+        }
+
+        public void do_process<ViewModel>(ViewModel data)
+        {
+            response_engine.display(data);
         }
     }
 }
