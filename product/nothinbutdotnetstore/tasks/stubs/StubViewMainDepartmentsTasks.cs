@@ -3,7 +3,7 @@ using System.Linq;
 using nothinbutdotnetstore.dto;
 using nothinbutdotnetstore.tasks;
 
-namespace nothinbutdotnetstore.web.infrastructure.stubs
+namespace nothinbutdotnetstore.tasks.stubs
 {
     class StubViewMainDepartmentTasks : CatalogTasks
     {

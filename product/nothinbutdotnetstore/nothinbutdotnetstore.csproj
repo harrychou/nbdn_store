@@ -44,14 +44,17 @@
     <Compile Include="dto\DepartmentItem.cs" />
     <Compile Include="tasks\CatalogTasks.cs" />
     <Compile Include="web\application\DataKeys.cs" />
-    <Compile Include="web\infrastructure\ViewBuilder.cs" />
+    <Compile Include="web\infrastructure\PageFactory.cs" />
+    <Compile Include="web\infrastructure\stubs\StubViewPathRegistry.cs" />
+    <Compile Include="web\infrastructure\TransferBehaviour.cs" />
+    <Compile Include="web\infrastructure\ViewFactory.cs" />
     <Compile Include="web\infrastructure\ViewForModel.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="web\infrastructure\DefaultViewBuilder.cs" />
+    <Compile Include="web\infrastructure\DefaultViewFactory.cs" />
     <Compile Include="web\infrastructure\DefaultResponseEngine.cs">
     </Compile>
-    <Compile Include="web\infrastructure\stubs\StubViewMainDepartmentsTasks.cs" />
+    <Compile Include="tasks\stubs\StubViewMainDepartmentsTasks.cs" />
     <Compile Include="web\application\ViewMainDepartments.cs" />
     <Compile Include="web\infrastructure\ApplicationCommand.cs" />
     <Compile Include="web\infrastructure\CommandRegistry.cs" />
@@ -66,6 +69,7 @@
     <Compile Include="web\infrastructure\RequestHandler.cs" />
     <Compile Include="web\infrastructure\ResponseEngine.cs" />
     <Compile Include="web\infrastructure\stubs\StubRequestFactory.cs" />
+    <Compile Include="web\infrastructure\ViewPathRegistry.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

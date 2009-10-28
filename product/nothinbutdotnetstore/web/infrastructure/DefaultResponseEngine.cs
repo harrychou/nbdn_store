@@ -1,29 +1,23 @@
-using System;
-using System.Collections.Generic;
-using nothinbutdotnetstore.dto;
-using nothinbutdotnetstore.web.application;
+using System.Web;
 
 namespace nothinbutdotnetstore.web.infrastructure
 {
     public class DefaultResponseEngine : ResponseEngine
     {
-        ViewBuilder renderer;
+        ViewFactory renderer;
+        TransferBehaviour transfer_behaviour;
 
-        public DefaultResponseEngine(ViewBuilder renderer)
+        public DefaultResponseEngine() : this(new DefaultViewFactory(), (handler, form) => HttpContext.Current.Server.Transfer(handler, form)) {}
+
+        public DefaultResponseEngine(ViewFactory renderer, TransferBehaviour transfer_behaviour)
         {
             this.renderer = renderer;
-        }
-
-        public DefaultResponseEngine()
-            : this(new DefaultViewBuilder("~/views/DepartmentBrowser.aspx"))
-        {
+            this.transfer_behaviour = transfer_behaviour;
         }
 
         public void display<ViewModel>(ViewModel model)
         {
-            var view = renderer.build_view(model);
-            view.display();
+            transfer_behaviour(renderer.create_view_for(model), true);
         }
-
     }
 }

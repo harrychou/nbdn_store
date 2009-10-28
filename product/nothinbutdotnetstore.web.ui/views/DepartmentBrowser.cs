@@ -4,7 +4,5 @@ using nothinbutdotnetstore.web.infrastructure;
 
 namespace nothinbutdotnetstore.web.ui.views
 {
-    public class DepartmentBrowser: DefaultViewForModel<IEnumerable<DepartmentItem>>
-    {
-     }
+    public class DepartmentBrowser : DefaultViewForModel<IEnumerable<DepartmentItem>> {}
 }
