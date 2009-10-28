@@ -4,7 +4,6 @@ namespace nothinbutdotnetstore.web.infrastructure
     {
         CommandRegistry command_registry;
 
-        public DefaultFrontController():this(new DefaultCommandRegistry()){}
 
         public DefaultFrontController(CommandRegistry command_registry)
         {
@@ -13,7 +12,6 @@ namespace nothinbutdotnetstore.web.infrastructure
 
         public void process(Request request)
         {
-
             command_registry.get_command_that_can_process(request).process(request);
         }
     }

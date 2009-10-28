@@ -7,6 +7,7 @@ namespace nothinbutdotnetstore.tasks
     {
         IEnumerable<DepartmentItem> get_main_departments();
         IEnumerable<DepartmentItem> get_all_subdepartments_in(DepartmentItem department);
-        IEnumerable<ProductItem> get_products_in_department(DepartmentItem item);
+
+        IEnumerable<ProductItem> get_all_products_in(DepartmentItem department);
     }
 }
