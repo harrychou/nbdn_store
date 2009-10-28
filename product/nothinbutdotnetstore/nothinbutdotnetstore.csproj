@@ -41,10 +41,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="dto\CartItem.cs" />
     <Compile Include="dto\DepartmentItem.cs" />
+    <Compile Include="dto\ProductItem.cs" />
     <Compile Include="infrastructure\Mapper.cs" />
     <Compile Include="tasks\CatalogTasks.cs" />
+    <Compile Include="tasks\ShoppingCartTask.cs" />
+    <Compile Include="tasks\stubs\StubShoppingCartTask.cs" />
+    <Compile Include="web\application\AddProductToCart.cs" />
     <Compile Include="web\application\DataKeys.cs" />
+    <Compile Include="web\application\ViewProductsOfDepartment.cs" />
     <Compile Include="web\infrastructure\PageFactory.cs" />
     <Compile Include="web\infrastructure\DefaultRequest.cs" />
     <Compile Include="web\infrastructure\MapperRegistry.cs" />
