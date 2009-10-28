@@ -70,7 +70,7 @@
     <Compile Include="web\infrastructure\ResponseEngine.cs" />
     <Compile Include="web\infrastructure\stubs\StubRequestFactory.cs" />
     <Compile Include="web\infrastructure\ViewPathRegistry.cs" />
-    <Compile Include="web\application\ViewSubDepartmentCommand.cs" />
+    <Compile Include="web\application\ViewSubDepartments.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

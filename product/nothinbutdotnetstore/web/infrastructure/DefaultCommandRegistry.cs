@@ -14,7 +14,7 @@ namespace nothinbutdotnetstore.web.infrastructure
                 {
                     new DefaultCommand(
                         request => (request.action_name == DataKeys.view_sub_department_action),
-                                       new ViewSubDepartmentCommand()),
+                                       new ViewSubDepartments()),
                     new DefaultCommand(
                         request => (request.action_name == DataKeys.view_main_department_action),
                                        new ViewMainDepartments()),
