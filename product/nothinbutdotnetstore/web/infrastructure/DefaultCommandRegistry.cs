@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 
 using System.Linq;
+using nothinbutdotnetstore.web.application;
 
 namespace nothinbutdotnetstore.web.infrastructure
 {
@@ -8,6 +9,12 @@ namespace nothinbutdotnetstore.web.infrastructure
     {
 
         private IEnumerable<Command> command_list;
+
+        public DefaultCommandRegistry()
+            : this(
+                new List<Command> { new DefaultCommand(request => true,
+                    new ViewDepartmentCommand())}
+                ) { }
 
         public DefaultCommandRegistry(IEnumerable<Command> command_list)
         {

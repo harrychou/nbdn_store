@@ -1,108 +1,71 @@
-using System.Web;
+using System;
 using developwithpassion.bdd.contexts;
 using developwithpassion.bdd.harnesses.mbunit;
-using developwithpassion.bdd.mocking.rhino;
 using developwithpassion.bdddoc.core;
-using nothinbutdotnetstore.tests.utility;
 using nothinbutdotnetstore.web.infrastructure;
-using Rhino.Mocks;
+using developwithpassion.bdd.mocking.rhino;
 
 namespace nothinbutdotnetstore.tests.web
- {   
-     public class CommandSpecs
-     {
-         public abstract class concern : observations_for_a_sut_with_a_contract<Command,
-                                             ViewDepartmentStoreCommand>
-         {
-        
-         }
+{
+    public class CommandSpecs
+    {
+        public abstract class concern : observations_for_a_sut_with_a_contract<Command,
+                                            DefaultCommand> {
 
-         [Concern(typeof(ViewDepartmentStoreCommand))]
-         public class when_receiving_a_request_that_can_be_handled : concern
-         {
-             context c = () =>
-             {
-                 var request_name = "view_department";
+            context c = () =>
+            {
+                provide_a_basic_sut_constructor_argument<Predicate<Request>>(request1 => true);
+            };
+        }
 
-                 request_that_can_be_handled = an<Request>();
-                 request_that_can_be_handled.name = request_name;
-
-                 provide_a_basic_sut_constructor_argument(request_name);
-             };
-
-             because b = () =>
-             {
-                 response = sut.can_handle(request_that_can_be_handled);
-             };
-
-        
-             it should_return_true = () =>
-             {
-                 response.should_be_true();
-             };
-
-             static Request request_that_can_be_handled;
-             static bool response;
-         }
-
-         [Concern(typeof(ViewDepartmentStoreCommand))]
-         public class when_receiving_a_request_that_can_not_be_handled : concern
-         {
-             context c = () =>
-             {
-                 var request_name = "view_department";
-
-                 request_that_can_be_handled = an<Request>();
-                 request_that_can_be_handled.name = request_name;
-
-                 provide_a_basic_sut_constructor_argument("");
-             };
-
-             because b = () =>
-             {
-                 response = sut.can_handle(request_that_can_be_handled);
-             };
+        [Concern(typeof (DefaultCommand))]
+        public class when_determining_if_it_can_process_a_request : concern
+        {
+            context c = () =>
+            {
+                request = an<Request>();
+            };
 
 
-             it should_return_false = () =>
-             {
-                 response.should_be_false();
-             };
-
-             static Request request_that_can_be_handled;
-             static bool response;
-         }
-
-         [Concern(typeof(ViewDepartmentStoreCommand))]
-         public class when_processing_a_request_to_view_major_department_stores : concern
-         {
-             context c = () =>
-             {
-                 var request_name = "view_department";
-
-                 request = an<Request>();
-                 request.name = request_name;
-
-                 provide_a_basic_sut_constructor_argument(request_name);
-
-                 department_store_service = the_dependency<DepartmentStoreService>();
-
-             };
-
-             because b = () =>
-             {
-                 response = sut.process(request);
-             };
+            because b = () =>
+            {
+                result = sut.can_handle(request);
+            };
 
 
-             it should_return_false = () =>
-             {
-                department_store_service.received(service => service.get_main_department_stores());
-             };
+            it should_make_the_determination_by_leveraging_its_request_specification = () =>
+            {
+                result.should_be_true();
+            };
 
-             static Request request;
-             static object response;
-             static DepartmentStoreService department_store_service;
-         }
-     }
- }
+            static bool result;
+            static Request request;
+        }
+
+        [Concern(typeof (DefaultCommand))]
+        public class when_processing_a_request : concern
+        {
+            context c = () =>
+            {
+                request = an<Request>();
+                application_command = the_dependency<ApplicationCommand>();
+            };
+
+
+            because b = () =>
+            {
+                sut.process(request);
+            };
+
+
+            it should_delegate_the_processing_to_the_application_specific_command = () =>
+            {
+                application_command.received(command => command.process(request));
+            };
+
+            static bool result;
+            static Request request;
+            static ApplicationCommand application_command;
+        }
+    }
+}
