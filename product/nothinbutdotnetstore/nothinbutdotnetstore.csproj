@@ -42,9 +42,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="dto\DepartmentItem.cs" />
+    <Compile Include="infrastructure\Mapper.cs" />
     <Compile Include="tasks\CatalogTasks.cs" />
     <Compile Include="web\application\DataKeys.cs" />
     <Compile Include="web\infrastructure\PageFactory.cs" />
+    <Compile Include="web\infrastructure\DefaultRequest.cs" />
+    <Compile Include="web\infrastructure\MapperRegistry.cs" />
     <Compile Include="web\infrastructure\stubs\StubViewPathRegistry.cs" />
     <Compile Include="web\infrastructure\TransferBehaviour.cs" />
     <Compile Include="web\infrastructure\ViewFactory.cs" />
