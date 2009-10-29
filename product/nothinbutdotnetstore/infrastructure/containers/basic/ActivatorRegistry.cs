@@ -19,7 +19,21 @@ namespace nothinbutdotnetstore.infrastructure.containers.basic
 
         public InstanceActivator get_activator_for(Type type)
         {
+            if (!activator_list.ContainsKey(type)) throw new ActivatorNotFoundException(type);
+
             return activator_list[type];
         }
+    }
+
+    public class ActivatorNotFoundException : Exception
+    {
+        Type type;
+
+        public ActivatorNotFoundException(Type type): base(type.FullName + " not found ")
+        {
+            this.type = type;
+        }
+
+
     }
 }
