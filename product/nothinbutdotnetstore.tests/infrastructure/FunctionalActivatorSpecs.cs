@@ -1,28 +1,25 @@
 using System;
-using System.Reflection;
 using developwithpassion.bdd.contexts;
  using developwithpassion.bdd.harnesses.mbunit;
  using developwithpassion.bdddoc.core;
  using nothinbutdotnetstore.infrastructure.containers.basic;
-using Rhino.Mocks;
 
 namespace nothinbutdotnetstore.tests.infrastructure
  {   
-     public class InstanceActivatorSpecs
+     public class FunctionalActivatorSpecs
      {
          public abstract class concern : observations_for_a_sut_with_a_contract<InstanceActivator,
-             DefaultInstanceActivator>
+             FunctionalInstanceActivator>
          {
         
          }
 
-         [Concern(typeof(DefaultInstanceActivator))]
+         [Concern(typeof(FunctionalInstanceActivator))]
          public class when_creating_an_instance_of_a_type : concern
          {
              context c = () =>
              {
-                 activator = () => new Simple();
-                 provide_a_basic_sut_constructor_argument(activator);
+                 provide_a_basic_sut_constructor_argument<Func<object>>(() => new Simple());
              };
 
              because b = () =>
@@ -36,9 +33,7 @@ namespace nothinbutdotnetstore.tests.infrastructure
              };
 
              static object result;
-             private static ActivationInfo activation_information;
              private static Simple instance;
-             private static Func<object> activator;
          }
 
          public class Simple{}

@@ -71,7 +71,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="infrastructure\DefaultContainerSpecs.cs" />
-    <Compile Include="infrastructure\InstanceActivatorSpecs.cs" />
+    <Compile Include="infrastructure\FunctionalActivatorSpecs.cs" />
     <Compile Include="utility\empty_test_fixture_for_test_driven.cs" />
     <Compile Include="utility\ObjectMother.cs" />
     <Compile Include="web\AddToCartSpecs.cs" />
