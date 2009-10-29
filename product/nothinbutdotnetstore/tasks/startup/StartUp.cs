@@ -25,13 +25,12 @@ namespace nothinbutdotnetstore.tasks.startup
         {
             activators = new Dictionary<Type, InstanceActivator>();
             var container = initialize_the_container();
-
             var service = new DefaultContainerCoreService(container, activators);
 
-            new TaskRegistrationCommand(service).run();
-            new ViewEngineRegistrationCommand(service).run();
-            new ApplicationCommandRegistrationCommand(service).run();
-            new FrontControllerRegistrationCommand(service).run();
+            new ConfigureServiceLayer(service).run();
+            new ConfigureViewEngine(service).run();
+            new ConfigureApplicationRoutes(service).run();
+            new ConfigureFrontController(service).run();
         }
 
         private static Container initialize_the_container() {

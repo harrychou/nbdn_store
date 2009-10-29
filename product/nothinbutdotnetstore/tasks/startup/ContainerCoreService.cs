@@ -18,10 +18,10 @@ namespace nothinbutdotnetstore.tasks.startup
         Dependency resolve<Dependency>();
     }
 
-    public class TaskRegistrationCommand: ContainerCommand
+    public class ConfigureServiceLayer: ContainerCommand
     {
         DefaultContainerCoreService service;
-        public TaskRegistrationCommand(DefaultContainerCoreService service)
+        public ConfigureServiceLayer(DefaultContainerCoreService service)
         {
             this.service = service;
         }
@@ -32,10 +32,10 @@ namespace nothinbutdotnetstore.tasks.startup
         }
     }
 
-    public class ViewEngineRegistrationCommand : ContainerCommand
+    public class ConfigureViewEngine : ContainerCommand
     { 
         DefaultContainerCoreService service;
-        public ViewEngineRegistrationCommand(DefaultContainerCoreService service)
+        public ConfigureViewEngine(DefaultContainerCoreService service)
         {
             this.service = service;
         }
@@ -53,10 +53,10 @@ namespace nothinbutdotnetstore.tasks.startup
         }
     }
 
-    public class ApplicationCommandRegistrationCommand : ContainerCommand
+    public class ConfigureApplicationRoutes : ContainerCommand
     {
         DefaultContainerCoreService service;
-        public ApplicationCommandRegistrationCommand(DefaultContainerCoreService service)
+        public ConfigureApplicationRoutes(DefaultContainerCoreService service)
         {
             this.service = service;
         }
@@ -76,10 +76,10 @@ namespace nothinbutdotnetstore.tasks.startup
         }
     }
 
-    public class FrontControllerRegistrationCommand : ContainerCommand
+    public class ConfigureFrontController : ContainerCommand
     { 
         DefaultContainerCoreService service;
-        public FrontControllerRegistrationCommand(DefaultContainerCoreService service)
+        public ConfigureFrontController(DefaultContainerCoreService service)
         {
             this.service = service;
         }
@@ -99,7 +99,7 @@ namespace nothinbutdotnetstore.tasks.startup
 
 
     public class DefaultContainerCoreService : ContainerCoreService {
-        readonly Container container;
+        Container container;
         IDictionary<Type,InstanceActivator> activators;
 
         public DefaultContainerCoreService(Container container, IDictionary<Type, InstanceActivator> activators)
