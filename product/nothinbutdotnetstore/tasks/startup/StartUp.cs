@@ -4,12 +4,12 @@ namespace nothinbutdotnetstore.tasks.startup
     {
         static public void run()
         {
-            var container_service = new DefaultContainerCoreService();
+            Start.the_application().by_running<ConfigureCoreServices>()
+                .followed_by<ConfigureServiceLayer>()
+                .followed_by<ConfigureViewEngine>()
+                .followed_by<ConfigureFrontController>()
+                .finish_by<ConfigureApplicationRoutes>();
 
-            new ServiceTasks(container_service).Register();
-            new ViewEngineComponents(container_service).Register();
-            new CommandComponents(container_service).Register();
-            new FrontControllerComponents(container_service).Register();
         }
 
     }

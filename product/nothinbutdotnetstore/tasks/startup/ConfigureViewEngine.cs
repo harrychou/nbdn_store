@@ -5,16 +5,16 @@ using nothinbutdotnetstore.web.infrastructure.stubs;
 
 namespace nothinbutdotnetstore.tasks.startup
 {
-    public class ViewEngineComponents : ContainerRegistry
+    public class ConfigureViewEngine : StartupCommand
     {
         private readonly DefaultContainerCoreService container_core_service;
 
-        public ViewEngineComponents(DefaultContainerCoreService container_core_service)
+        public ConfigureViewEngine(DefaultContainerCoreService container_core_service)
         {
             this.container_core_service = container_core_service;
         }
 
-        public void Register()
+        public void run()
         {
             container_core_service.register_an_activator_for<ViewPathRegistry>(() => new StubViewPathRegistry());
             container_core_service.register_an_activator_for<ViewFactory>(() => new DefaultViewFactory(container_core_service.resolve<ViewPathRegistry>(),

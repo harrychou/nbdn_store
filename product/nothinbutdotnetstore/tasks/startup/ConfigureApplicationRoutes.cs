@@ -5,16 +5,16 @@ using nothinbutdotnetstore.web.infrastructure;
 
 namespace nothinbutdotnetstore.tasks.startup
 {
-    public class CommandComponents : ContainerRegistry
+    public class ConfigureApplicationRoutes : StartupCommand
     {
         private readonly ContainerCoreService container_core_service;
 
-        public CommandComponents(ContainerCoreService container_core_service)
+        public ConfigureApplicationRoutes(ContainerCoreService container_core_service)
         {
             this.container_core_service = container_core_service;
         }
 
-        public void Register()
+        public void run()
         {
             container_core_service.register_an_activator_for<ViewModelDisplay<IEnumerable<DepartmentItem>>>(
                 () => new ViewModelDisplay<IEnumerable<DepartmentItem>>(container_core_service.resolve<ResponseEngine>(), request => container_core_service.resolve<CatalogTasks>().get_main_departments()));
