@@ -9,13 +9,13 @@ namespace nothinbutdotnetstore.web.infrastructure.stubs
         {
             return new StubMapper<Input, Output>();
         }
-    }
 
-    public class StubMapper<Input, Output> : Mapper<Input, Output>
-    {
-        public Output map(Input obj)
+        class StubMapper<T, T1> : Mapper<T, T1>
         {
-            throw new NotImplementedException();
+            public T1 map(T obj)
+            {
+                throw new NotImplementedException();
+            }
         }
     }
 }

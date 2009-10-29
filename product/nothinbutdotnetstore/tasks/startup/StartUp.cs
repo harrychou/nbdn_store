@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Web;
 using System.Web.Compilation;
@@ -15,70 +14,57 @@ namespace nothinbutdotnetstore.tasks.startup
 {
     public class StartUp
     {
+        static IDictionary<Type, InstanceActivator> activators;
+
         static public void run()
         {
-            var activator_list = new Dictionary<Type, InstanceActivator>();
-
-            activator_list.Add(typeof(ViewPathRegistry), new FunctionalInstanceActivator(() => new StubViewPathRegistry()));
-            activator_list.Add(typeof(CatalogTasks), new FunctionalInstanceActivator(() => new StubViewMainDepartmentTasks()));
-            activator_list.Add(typeof(MapperRegistry), new FunctionalInstanceActivator(() => new StubMapperRegistry()));
-
-
-            activator_list.Add(typeof(Request), new FunctionalInstanceActivator(() => 
-                new DefaultRequest((StubMapperRegistry)activator_list[typeof(StubMapperRegistry)].create())));
- 
-            TransferBehaviour transfer_behavior = HttpContext.Current.Server.Transfer;
-            PageFactory page_factory = BuildManager.CreateInstanceFromVirtualPath;
-            activator_list.Add(typeof(TransferBehaviour), new FunctionalInstanceActivator(() => transfer_behavior));
-            activator_list.Add(typeof(PageFactory), new FunctionalInstanceActivator(() => page_factory));
-
-
-            activator_list.Add(typeof (ViewFactory), new FunctionalInstanceActivator(() => 
-                new DefaultViewFactory((ViewPathRegistry)activator_list[typeof(ViewPathRegistry)].create(), 
-                    (PageFactory)activator_list[typeof(PageFactory)].create())));
-            
-            activator_list.Add(typeof(ResponseEngine), new FunctionalInstanceActivator(() => 
-                new DefaultResponseEngine((ViewFactory)activator_list[typeof(ViewFactory)].create(), transfer_behavior)));
-
-
-            activator_list.Add(typeof(ViewForModel<DepartmentItem>), new FunctionalInstanceActivator(() => new DefaultViewForModel<DepartmentItem>()));
-            activator_list.Add(typeof(ViewForModel<ProductItem>), new FunctionalInstanceActivator(() => new DefaultViewForModel<ProductItem>()));
-            activator_list.Add(typeof(ViewForModel<LineItem>), new FunctionalInstanceActivator(() => new DefaultViewForModel<LineItem>()));
-            activator_list.Add(typeof(ViewForModel<CartItem>), new FunctionalInstanceActivator(() => new DefaultViewForModel<CartItem>()));
-
-
-            IList<Command> command_list = new List<Command>();
-
-            activator_list.Add(typeof(ViewModelDisplay<DepartmentItem>), new FunctionalInstanceActivator(() =>
-            {
-                return new ViewModelDisplay<IEnumerable<DepartmentItem>>(
-                    (ResponseEngine) activator_list[typeof (ResponseEngine)].create(), r =>
-                    {
-                        return ((CatalogTasks) activator_list[typeof (CatalogTasks)].create()).get_main_departments();
-                    });
-            }));
-
-            activator_list.Add(typeof(ViewModelDisplay<ProductItem>), new FunctionalInstanceActivator(() =>
-            {
-                return new ViewModelDisplay<IEnumerable<ProductItem>>(
-                    (ResponseEngine) activator_list[typeof (ResponseEngine)].create(), r =>
-                    {
-                        return ((CatalogTasks) activator_list[typeof (CatalogTasks)].create()).get_all_products_in((DepartmentItem) activator_list[typeof (DepartmentItem)].create());
-                    });
-            }));
-
-
-            activator_list.Add(typeof(CommandRegistry), new FunctionalInstanceActivator(() => new DefaultCommandRegistry(command_list)));
-
-
-
-            
-
-            
-
-            ActivatorRegistry registry = new DefaultActivatorRegistry(activator_list);
-
+            activators = new Dictionary<Type, InstanceActivator>();
+            ActivatorRegistry registry = new DefaultActivatorRegistry(activators);
             Container container = new DefaultContainer(registry);
             IOC.initialize_with(container);
+
+            registering_activator_for<CatalogTasks>(() => new StubViewMainDepartmentTasks());
+            registering_activator_for<ViewPathRegistry>(() => new StubViewPathRegistry());
+            registering_activator_for<ViewFactory>(() => new DefaultViewFactory(container.instance_of<ViewPathRegistry>(),
+                                                                                BuildManager.CreateInstanceFromVirtualPath));
+
+            registering_activator_for<MapperRegistry>(() => new StubMapperRegistry());
+            registering_activator_for<ResponseEngine>(() => new DefaultResponseEngine(container.instance_of<ViewFactory>(),
+                                                                                      (handler, preserve_form) => HttpContext.Current.Server.Transfer(handler, preserve_form)));
+
+            register_view_model_display_activators(container);
+
+            var commands = all_commands();
+
+            registering_activator_for<CommandRegistry>(() => new DefaultCommandRegistry(commands));
+
+            registering_activator_for<FrontController>(() => new DefaultFrontController(container.instance_of<CommandRegistry>()));
+            registering_activator_for<FrontControllerRequestFactory>(() => new StubRequestFactory());
+        }
+
+        static void register_view_model_display_activators(Container container)
+        {
+            registering_activator_for<ViewModelDisplay<IEnumerable<DepartmentItem>>>(
+                () => new ViewModelDisplay<IEnumerable<DepartmentItem>>(container.instance_of<ResponseEngine>(), request => container.instance_of<CatalogTasks>().get_main_departments()));
+
+            registering_activator_for<ViewModelDisplay<IEnumerable<DepartmentItem>>>(
+                () => new ViewModelDisplay<IEnumerable<DepartmentItem>>(container.instance_of<ResponseEngine>(), request => container.instance_of<CatalogTasks>().get_all_subdepartments_in(container.instance_of<DepartmentItem>())));
+
+            registering_activator_for<ViewModelDisplay<IEnumerable<ProductItem>>>(
+                () => new ViewModelDisplay<IEnumerable<ProductItem>>(container.instance_of<ResponseEngine>(), request => container.instance_of<CatalogTasks>().get_all_products_in(container.instance_of<DepartmentItem>())));
+
+            registering_activator_for<ViewModelDisplay<IEnumerable<ProductItem>>>(
+                () => new ViewModelDisplay<IEnumerable<ProductItem>>(container.instance_of<ResponseEngine>(), request => container.instance_of<CatalogTasks>().get_all_products_in(container.instance_of<DepartmentItem>())));
+        }
+
+        static IEnumerable<Command> all_commands()
+        {
+            yield return new DefaultCommand(request => true, IOC.resolve.instance_of<ViewModelDisplay<IEnumerable<DepartmentItem>>>()); 
+        }
+
+        static void registering_activator_for<ContractType>(Func<object> activator)
+        {
+            activators.Add(typeof (ContractType), new FunctionalInstanceActivator(activator));
+        }
     }
 }

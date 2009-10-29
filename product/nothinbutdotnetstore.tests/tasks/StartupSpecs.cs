@@ -22,7 +22,7 @@ namespace nothinbutdotnetstore.tests.tasks
 
             it should_be_able_to_access_key_application_services = () =>
             {
-                IOC.resolve.instance_of<FrontController>().should_not_be_an_instance_of<DefaultFrontController>();
+                IOC.resolve.instance_of<FrontController>().should_be_an_instance_of<DefaultFrontController>();
             };
         }
     }
