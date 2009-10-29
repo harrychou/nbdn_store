@@ -4,7 +4,6 @@
  using developwithpassion.bdd.harnesses.mbunit;
  using developwithpassion.bdddoc.core;
  using nothinbutdotnetstore.infrastructure.containers.basic;
- using Rhino.Mocks;
 
 namespace nothinbutdotnetstore.tests.infrastructure
  {   
