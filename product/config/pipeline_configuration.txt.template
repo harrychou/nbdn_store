@@ -1,0 +1,5 @@
+﻿ConfigureCoreServices
+ConfigureServiceLayer
+ConfigureViewEngine
+ConfigureFrontController
+ConfigureApplicationRoutes
