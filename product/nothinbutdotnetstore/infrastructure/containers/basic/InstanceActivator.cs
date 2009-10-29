@@ -1,5 +1,3 @@
-using System;
-
 namespace nothinbutdotnetstore.infrastructure.containers.basic
 {
     public interface InstanceActivator
