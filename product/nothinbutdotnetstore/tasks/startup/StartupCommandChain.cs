@@ -1,35 +1,36 @@
 using System;
 using System.Collections.Generic;
+using nothinbutdotnetstore.infrastructure;
 
 namespace nothinbutdotnetstore.tasks.startup
 {
     public class StartupCommandChain
     {
-        StartupCommandRunner runner;
-        IList<Type> command_types = new List<Type>();
+        StartupCommandFactory command_factory;
+        Command chain;
 
-
-        public StartupCommandChain(StartupCommandRunner runner,Type initial_command_type)
+        public StartupCommandChain(StartupCommandFactory command_factory, Type initial_command_type)
         {
-            this.runner = runner;
-            command_types.Add(initial_command_type);
+            this.command_factory = command_factory;
+            chain = command_factory.create_command_from(initial_command_type);
         }
 
         public StartupCommandChain followed_by<StartupStep>() where StartupStep : StartupCommand
         {
-            add_command_for<StartupStep>();
+            add_command_for(typeof (StartupStep));
             return this;
         }
 
         public void finish_by<T>() where T : StartupCommand
         {
             followed_by<T>();
-            runner.run(command_types);
+            chain.run();
         }
 
-        void add_command_for<T>()
+        void add_command_for(Type command_type)
         {
-            command_types.Add(typeof (T));
+            chain = new CombinedCommand(chain, command_factory.create_command_from(command_type));
         }
+
     }
 }

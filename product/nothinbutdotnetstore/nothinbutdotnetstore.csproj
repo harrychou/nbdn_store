@@ -49,6 +49,7 @@
     <Compile Include="dto\DepartmentItem.cs" />
     <Compile Include="dto\LineItem.cs" />
     <Compile Include="dto\ProductItem.cs" />
+    <Compile Include="infrastructure\CombinedCommand.cs" />
     <Compile Include="infrastructure\Command.cs" />
     <Compile Include="infrastructure\containers\basic\ActivatorCreationException.cs" />
     <Compile Include="infrastructure\containers\basic\DefaultContainer.cs" />
@@ -69,7 +70,7 @@
     <Compile Include="tasks\startup\StartUp.cs" />
     <Compile Include="tasks\startup\ConfigureViewEngine.cs" />
     <Compile Include="tasks\startup\StartupCommandChain.cs" />
-    <Compile Include="tasks\startup\StartupCommandRunner.cs" />
+    <Compile Include="tasks\startup\StartupCommandFactory.cs" />
     <Compile Include="web\application\AddToCart.cs" />
     <Compile Include="web\application\ApplicationCommand.cs" />
     <Compile Include="web\application\DataKeys.cs" />
