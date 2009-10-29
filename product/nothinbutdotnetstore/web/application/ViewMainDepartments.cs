@@ -1,3 +1,4 @@
+using developwithpassion.commons.core.infrastructure.containers;
 using nothinbutdotnetstore.tasks;
 using nothinbutdotnetstore.web.infrastructure;
 
@@ -5,8 +6,8 @@ namespace nothinbutdotnetstore.web.application
 {
     public class ViewMainDepartments : ApplicationCommand<CatalogTasks>
     {
-        public ViewMainDepartments(ResponseEngine response_engine, CatalogTasks service)
-            : base(response_engine, service) 
+        public ViewMainDepartments(ResponseEngine response_engine,CatalogTasks catalog_tasks)
+            : base(response_engine, catalog_tasks) 
         {}
 
         public override void process(Request request)

@@ -1,5 +1,6 @@
 using System.Web;
-using nothinbutdotnetstore.web.infrastructure.stubs;
+using developwithpassion.commons.core.infrastructure.containers;
+using developwithpassion.commons.core.infrastructure.logging;
 
 namespace nothinbutdotnetstore.web.infrastructure
 {
@@ -8,8 +9,8 @@ namespace nothinbutdotnetstore.web.infrastructure
         FrontControllerRequestFactory request_factory;
         FrontController front_controller;
 
-        public RequestHandler():this(new StubRequestFactory(),
-            new DefaultFrontController(null)) {}
+        public RequestHandler():this(IOC.resolve.instance_of<FrontControllerRequestFactory>(), 
+           IOC.resolve.instance_of<FrontController>()) {}
 
         public RequestHandler(FrontControllerRequestFactory request_factory, FrontController frontController)
         {
