@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="developwithpassion.commons.core.infrastructure, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\thirdparty\developwithpassion.commons\developwithpassion.commons.core.infrastructure.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core">
@@ -71,7 +75,6 @@
     <Compile Include="web\infrastructure\CommandRegistry.cs" />
     <Compile Include="web\infrastructure\Command.cs" />
     <Compile Include="web\infrastructure\DefaultCommand.cs" />
-    <Compile Include="web\infrastructure\DefaultCommandRegistry.cs" />
     <Compile Include="web\infrastructure\DefaultFrontController.cs" />
     <Compile Include="web\infrastructure\FrontController.cs" />
     <Compile Include="web\infrastructure\FrontControllerRequestFactory.cs" />
@@ -82,6 +85,9 @@
     <Compile Include="web\infrastructure\stubs\StubRequestFactory.cs" />
     <Compile Include="web\infrastructure\ViewPathRegistry.cs" />
     <Compile Include="web\application\ViewSubDepartments.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="infrastructure\containers\basic\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

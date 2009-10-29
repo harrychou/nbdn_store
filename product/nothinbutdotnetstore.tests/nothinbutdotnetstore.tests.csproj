@@ -93,6 +93,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="dto\" />
+    <Folder Include="infrastructure\" />
     <Folder Include="Properties\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
