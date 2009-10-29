@@ -3,19 +3,20 @@ using nothinbutdotnetstore.web.infrastructure;
 
 namespace nothinbutdotnetstore.web.application
 {
-    public class ViewModelDisplay<ViewModel> : ApplicationCommand {
+    public class ViewModelDisplay<ViewModel> : ApplicationCommand
+    {
         ResponseEngine response_engine;
-        private readonly Func<Request, ViewModel> accessor;
+        Func<Request, ViewModel> model_query;
 
-        public ViewModelDisplay(ResponseEngine response_engine, Func<Request, ViewModel> accessor)
+        public ViewModelDisplay(ResponseEngine response_engine, Func<Request, ViewModel> model_query)
         {
             this.response_engine = response_engine;
-            this.accessor = accessor;
+            this.model_query = model_query;
         }
 
         public void process(Request request)
         {
-            response_engine.display(accessor(request));
+            response_engine.display(model_query(request));
         }
     }
 }
