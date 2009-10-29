@@ -57,8 +57,13 @@
     <Compile Include="infrastructure\Mapper.cs" />
     <Compile Include="tasks\CatalogTasks.cs" />
     <Compile Include="tasks\ShoppingCartTask.cs" />
+    <Compile Include="tasks\startup\CommandComponents.cs" />
     <Compile Include="tasks\startup\ContainerCoreService.cs" />
+    <Compile Include="tasks\startup\ContainerRegistry.cs" />
+    <Compile Include="tasks\startup\FrontControllerComponents.cs" />
+    <Compile Include="tasks\startup\ServiceTasks.cs" />
     <Compile Include="tasks\startup\StartUp.cs" />
+    <Compile Include="tasks\startup\ViewEngineComponents.cs" />
     <Compile Include="web\application\AddToCart.cs" />
     <Compile Include="web\application\ApplicationCommand.cs" />
     <Compile Include="web\application\DataKeys.cs" />

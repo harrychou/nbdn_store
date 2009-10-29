@@ -1,4 +1,7 @@
 using System;
+using System.Collections.Generic;
+using developwithpassion.commons.core.infrastructure.containers;
+using nothinbutdotnetstore.infrastructure.containers.basic;
 
 namespace nothinbutdotnetstore.tasks.startup
 {
@@ -6,5 +9,29 @@ namespace nothinbutdotnetstore.tasks.startup
     {
         void register_an_activator_for<ContractType>(Func<object> activator);
         Dependency resolve<Dependency>();
+    }
+
+    public class DefaultContainerCoreService : ContainerCoreService {
+
+        private IDictionary<Type, InstanceActivator> activators;
+        private Container container;
+
+        public DefaultContainerCoreService()
+        {
+            this.activators = activators = new Dictionary<Type, InstanceActivator>();
+            ActivatorRegistry registry = new DefaultActivatorRegistry(activators);
+            container = new DefaultContainer(registry);
+            IOC.initialize_with(container);
+        }
+
+        public void register_an_activator_for<ContractType>(Func<object> activator)
+        {
+            activators.Add(typeof (ContractType), new FunctionalInstanceActivator(activator));        
+        }
+
+        public Dependency resolve<Dependency>()
+        {
+            return container.instance_of<Dependency>();
+        }
     }
 }
