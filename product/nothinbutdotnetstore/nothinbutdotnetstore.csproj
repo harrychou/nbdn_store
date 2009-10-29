@@ -57,6 +57,7 @@
     <Compile Include="infrastructure\Mapper.cs" />
     <Compile Include="tasks\CatalogTasks.cs" />
     <Compile Include="tasks\ShoppingCartTask.cs" />
+    <Compile Include="tasks\startup\StartUp.cs" />
     <Compile Include="web\application\AddToCart.cs" />
     <Compile Include="web\application\ApplicationCommand.cs" />
     <Compile Include="web\application\DataKeys.cs" />

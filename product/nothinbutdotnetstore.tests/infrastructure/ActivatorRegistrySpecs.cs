@@ -1,8 +1,6 @@
  using System;
  using System.Collections.Generic;
- using System.Linq;
  using developwithpassion.bdd.contexts;
- using developwithpassion.bdd.core.extensions;
  using developwithpassion.bdd.harnesses.mbunit;
  using developwithpassion.bdddoc.core;
  using nothinbutdotnetstore.infrastructure.containers.basic;
@@ -10,7 +8,7 @@
 
 namespace nothinbutdotnetstore.tests.infrastructure
  {   
-     public class ActivatorRegistrySpec
+     public class ActivatorRegistrySpecs
      {
          public abstract class concern : observations_for_a_sut_with_a_contract<ActivatorRegistry,
                                              DefaultActivatorRegistry>
@@ -23,7 +21,7 @@ namespace nothinbutdotnetstore.tests.infrastructure
 
              };
 
-             static protected Dictionary<Type, InstanceActivator> all_activators;
+             static protected IDictionary<Type, InstanceActivator> all_activators;
 
              static protected InstanceActivator result;
          }
@@ -36,8 +34,6 @@ namespace nothinbutdotnetstore.tests.infrastructure
 
                  activator_that_can_instantiate_the_type = an<InstanceActivator>();
                  all_activators.Add(typeof(SimpleInterfaceImplementation), activator_that_can_instantiate_the_type);
-                 activator_that_can_instantiate_the_type.Stub(activator => activator.create()).Return(activator_that_can_instantiate_the_type);
-
              };
 
              because b = () =>
