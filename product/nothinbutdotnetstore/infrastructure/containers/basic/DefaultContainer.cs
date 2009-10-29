@@ -6,23 +6,29 @@ namespace nothinbutdotnetstore.infrastructure.containers.basic
 {
     public class DefaultContainer : Container
     {
-        private readonly ImplementationRegistry implementation_registry;
-        private readonly InstanceActivator instance_activator;
+        ActivatorRegistry activator_registry;
 
-        public DefaultContainer(ImplementationRegistry implementation_registry, InstanceActivator instance_activator)
+        public DefaultContainer(ActivatorRegistry activator_registry)
         {
-            this.implementation_registry = implementation_registry;
-            this.instance_activator = instance_activator;
+            this.activator_registry = activator_registry;
         }
 
         public Dependency instance_of<Dependency>()
         {
-            return (Dependency)instance_of(typeof (Dependency));
+            return (Dependency) instance_of(typeof (Dependency));
         }
 
         public object instance_of(Type dependency_type)
         {
-            return instance_activator.activate(implementation_registry.get_implementation_of(dependency_type));
+            var activator = activator_registry.get_activator_for(dependency_type);
+            try
+            {
+                return activator.create();
+            }
+            catch (Exception e)
+            {
+                throw new ActivatorCreationException(e,dependency_type);
+            }
         }
 
         public IEnumerable<DependencyType> all_instances_of<DependencyType>()

@@ -14,12 +14,12 @@ namespace nothinbutdotnetstore.tests.infrastructure
          {
              private context c = () =>
              {
-                 implementation_registry = the_dependency<ImplementationRegistry>();
-                 instance_activator = the_dependency<InstanceActivator>();
+                 implementation_registry = the_dependency<ActivatorRegistry>();
+                 instance_activator = an<InstanceActivator>();
              };
 
 
-             protected static ImplementationRegistry implementation_registry;
+             protected static ActivatorRegistry implementation_registry;
              protected  static InstanceActivator instance_activator;
         
          }
@@ -31,8 +31,8 @@ namespace nothinbutdotnetstore.tests.infrastructure
              {
                  instance = new OurClass();
 
-                 implementation_registry.Stub(registry => registry.get_implementation_of(typeof (OurClass))).Return(typeof(OurClass));
-                 instance_activator.Stub(activator => activator.activate(typeof (OurClass))).Return(instance);
+                 implementation_registry.Stub(registry => registry.get_activator_for(typeof (OurClass))).Return(instance_activator);
+                 instance_activator.Stub(activator => activator.create()).Return(instance);
              };
 
              because b = () =>
@@ -52,6 +52,37 @@ namespace nothinbutdotnetstore.tests.infrastructure
              private static OurClass instance;
          }
 
+
+         [Concern(typeof(DefaultContainer))]
+         public class when_the_activator_for_a_type_cannot_successfully_create_the_instance : concern
+         {
+             private context c = () =>
+             {
+                 instance = new OurClass();
+
+                 original_exception=new Exception();
+                 implementation_registry.Stub(registry => registry.get_activator_for(typeof (OurClass))).Return(instance_activator);
+                 instance_activator.Stub(activator => activator.create()).Throw(original_exception);
+             };
+
+             because b = () =>
+             {
+                 doing(() => sut.instance_of(typeof(OurClass)));
+             };
+
+        
+             it should_throw_an_instance_creation_exception = () =>
+             {
+                 var creation_exception = exception_thrown_by_the_sut.should_be_an_instance_of<ActivatorCreationException>();
+                 creation_exception.InnerException.should_be_equal_to(original_exception);
+                 creation_exception.type_that_could_not_be_created.should_be_equal_to(typeof(OurClass));
+             };
+
+             static OurClass result;
+             private static OurClass instance;
+             static Exception original_exception;
+         }
+
          [Concern(typeof(DefaultContainer))]
          public class when_requesting_an_instance_of_a_type : concern
          {
@@ -59,8 +90,8 @@ namespace nothinbutdotnetstore.tests.infrastructure
              {
                  instance = new OurClass();
 
-                 implementation_registry.Stub(registry => registry.get_implementation_of(typeof (OurClass))).Return(typeof(OurClass));
-                 instance_activator.Stub(activator => activator.activate(typeof (OurClass))).Return
+                 implementation_registry.Stub(registry => registry.get_activator_for(typeof (OurClass))).Return(instance_activator);
+                 instance_activator.Stub(activator => activator.create()).Return
                      (instance);
              };
 
@@ -87,8 +118,8 @@ namespace nothinbutdotnetstore.tests.infrastructure
              {
                  instance = new SimpleInterfaceImplementation();
 
-                 implementation_registry.Stub(registry => registry.get_implementation_of(typeof (SimpleInterface))).Return(typeof(SimpleInterfaceImplementation));
-                 instance_activator.Stub(activator => activator.activate(typeof (SimpleInterfaceImplementation))).Return
+                 implementation_registry.Stub(registry => registry.get_activator_for(typeof (SimpleInterface))).Return(instance_activator);
+                 instance_activator.Stub(activator => activator.create()).Return
                      (instance);
              };
 

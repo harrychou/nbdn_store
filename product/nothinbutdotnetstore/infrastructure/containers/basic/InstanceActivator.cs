@@ -4,6 +4,6 @@ namespace nothinbutdotnetstore.infrastructure.containers.basic
 {
     public interface InstanceActivator
     {
-        object activate(Type type);
+        object create();
     }
 }
