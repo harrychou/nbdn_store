@@ -72,7 +72,6 @@
   <ItemGroup>
     <Compile Include="utility\empty_test_fixture_for_test_driven.cs" />
     <Compile Include="utility\ObjectMother.cs" />
-
     <Compile Include="web\AddToCartSpecs.cs" />
     <Compile Include="web\CommandRegistrySpecs.cs" />
     <Compile Include="web\CommandSpecs.cs" />
@@ -82,7 +81,9 @@
     <Compile Include="web\ViewMainDepartmentsSpecs.cs" />
     <Compile Include="web\FrontControllerSpecs.cs" />
     <Compile Include="web\RequestHandlerSpecs.cs" />
+    <Compile Include="web\ViewModelDisplaySpec2.cs" />
     <Compile Include="web\ViewProductsSpecs.cs" />
+    <Compile Include="web\MyViewModelSpecs.cs" />
     <Compile Include="web\ViewSubDepartmentsSpecs.cs" />
   </ItemGroup>
   <ItemGroup>
