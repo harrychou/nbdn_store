@@ -24,9 +24,9 @@ namespace nothinbutdotnetstore.tests.web
          {
              context c = () =>
              {
+                 service = the_dependency<CatalogTasks>();
                  request = an<Request>();
                  response_engine = the_dependency<ResponseEngine>();
-                 service = the_dependency<CatalogTasks>();
 
                  department_list = new List<DepartmentItem>();
 

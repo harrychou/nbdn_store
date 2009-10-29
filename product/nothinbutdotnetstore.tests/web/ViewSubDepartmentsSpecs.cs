@@ -38,7 +38,7 @@ namespace nothinbutdotnetstore.tests.web
                 sut.process(request);
             };
 
-            it should_display_the_mainsub_departments = () =>
+            it should_display_the_sub_departments = () =>
             {
                 response_engine.received(result1 => result1.display(sub_department_list));
             };

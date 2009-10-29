@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="dto\CartItem.cs" />
     <Compile Include="dto\DepartmentItem.cs" />
     <Compile Include="dto\LineItem.cs" />
     <Compile Include="dto\ProductItem.cs" />
@@ -48,8 +49,10 @@
     <Compile Include="tasks\CatalogTasks.cs" />
     <Compile Include="tasks\ShoppingCartTask.cs" />
     <Compile Include="web\application\AddToCart.cs" />
+    <Compile Include="web\application\ApplicationCommand.cs" />
     <Compile Include="web\application\DataKeys.cs" />
     <Compile Include="web\application\ViewDepartmentProducts.cs" />
+    <Compile Include="web\application\ViewModelDisplay.cs" />
     <Compile Include="web\infrastructure\PageFactory.cs" />
     <Compile Include="web\infrastructure\DefaultRequest.cs" />
     <Compile Include="web\infrastructure\MapperRegistry.cs" />

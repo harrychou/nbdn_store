@@ -4,17 +4,16 @@ using nothinbutdotnetstore.web.infrastructure;
 
 namespace nothinbutdotnetstore.web.application
 {
-    public class AddToCart :ApplicationCommand {
-        private readonly ShoppingCartTask shoppingCartTask;
+    public class AddToCart :ApplicationCommand<ShoppingCartTask> {
 
-        public AddToCart(ShoppingCartTask shoppingCartTask)
+        public AddToCart(ResponseEngine response_engine, ShoppingCartTask service)
+            : base(response_engine, service)
         {
-            this.shoppingCartTask = shoppingCartTask;
         }
 
-        public void process(Request request)
+        public override void process(Request request)
         {
-            shoppingCartTask.add_product_to_cart(request.map<LineItem>());
+            service.add_product_to_cart(request.map<LineItem>());
         }
     }
 }

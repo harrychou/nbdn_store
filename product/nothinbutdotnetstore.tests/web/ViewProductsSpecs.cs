@@ -4,6 +4,7 @@ using System.Collections.Generic;
  using developwithpassion.bdd.mocking.rhino;
  using developwithpassion.bdddoc.core;
  using nothinbutdotnetstore.dto;
+
 using nothinbutdotnetstore.tasks;
 using nothinbutdotnetstore.web.application;
 using nothinbutdotnetstore.web.infrastructure;
@@ -42,6 +43,7 @@ namespace nothinbutdotnetstore.tests.web
         
              it should_display_all_products_in_the_department = () =>
              {
+
                  response_engine.received(engine => engine.display(product_list));                 
              };
 

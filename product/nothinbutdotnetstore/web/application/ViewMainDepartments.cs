@@ -3,20 +3,15 @@ using nothinbutdotnetstore.web.infrastructure;
 
 namespace nothinbutdotnetstore.web.application
 {
-    public class ViewMainDepartments : ApplicationCommand
+    public class ViewMainDepartments : ApplicationCommand<CatalogTasks>
     {
-        ResponseEngine _responseEngine;
-        CatalogTasks service;
+        public ViewMainDepartments(ResponseEngine response_engine, CatalogTasks service)
+            : base(response_engine, service) 
+        {}
 
-        public ViewMainDepartments(ResponseEngine _responseEngine, CatalogTasks service)
+        public override void process(Request request)
         {
-            this._responseEngine = _responseEngine;
-            this.service = service;
-        }
-
-        public void process(Request request)
-        {
-            _responseEngine.display(service.get_main_departments());
+            response_engine.display(service.get_main_departments());
         }
     }
 }
