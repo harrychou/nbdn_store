@@ -1,4 +1,5 @@
 using System.Web;
+using developwithpassion.commons.core.infrastructure.containers;
 
 namespace nothinbutdotnetstore.web.infrastructure.stubs
 {
@@ -6,7 +7,7 @@ namespace nothinbutdotnetstore.web.infrastructure.stubs
     {
         public Request create_from(HttpContext http_context)
         {
-            return new DefaultRequest(null);
+            return new DefaultRequest(IOC.resolve.instance_of<MapperRegistry>());
         }
 
        
