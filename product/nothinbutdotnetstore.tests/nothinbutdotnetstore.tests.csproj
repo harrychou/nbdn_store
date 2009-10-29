@@ -86,7 +86,9 @@
     <Compile Include="web\ViewMainDepartmentsSpecs.cs" />
     <Compile Include="web\FrontControllerSpecs.cs" />
     <Compile Include="web\RequestHandlerSpecs.cs" />
+    <Compile Include="web\ViewModelDisplaySpec2.cs" />
     <Compile Include="web\ViewProductsSpecs.cs" />
+    <Compile Include="web\MyViewModelSpecs.cs" />
     <Compile Include="web\ViewSubDepartmentsSpecs.cs" />
   </ItemGroup>
   <ItemGroup>
