@@ -4,7 +4,7 @@ namespace nothinbutdotnetstore.tasks.startup
     {
         static public StartupCommandChain by_running<T>() where T : StartupCommand
         {
-            return new StartupCommandChain(new StartupCommandRunner(), typeof (T));
+            return new StartupCommandChain(new StartupCommandFactory(), typeof (T));
         }
     }
 }
