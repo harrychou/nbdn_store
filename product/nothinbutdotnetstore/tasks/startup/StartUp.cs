@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Web;
 using System.Web.Compilation;
 using developwithpassion.commons.core.infrastructure.containers;
+using nothinbutdotnetstore.dto;
 using nothinbutdotnetstore.infrastructure.containers.basic;
 using nothinbutdotnetstore.tasks.stubs;
 using nothinbutdotnetstore.web.application;
@@ -13,58 +14,69 @@ namespace nothinbutdotnetstore.tasks.startup
 {
     public class StartUp
     {
+        static IDictionary<Type, InstanceActivator> activators;
+
         static public void run()
         {
-            var dictActivators = new Dictionary<Type, InstanceActivator>();
-            ActivatorRegistry registy = new DefaultActivatorRegistry(dictActivators);
-            IOC.initialize_with(new DefaultContainer(registy));
+            initialize_container();
 
-            TransferBehaviour transfer_bahavior = (handler, form) => HttpContext.Current.Server.Transfer(handler, form);
+            register_tasks();
 
-            ViewPathRegistry view_path_regitry = new StubViewPathRegistry();
+            register_infrastructure();
 
-            PageFactory page_factory = (path, type) => BuildManager.CreateInstanceFromVirtualPath(path, type);
+            register_commands();
 
-            ViewFactory view_factory = new DefaultViewFactory(view_path_regitry, page_factory); ;
+            register_front_controller();
+        }
 
-            ResponseEngine response_engine = new DefaultResponseEngine(view_factory, transfer_bahavior); ;
+        static void initialize_container()
+        {
+            activators = new Dictionary<Type, InstanceActivator>();
+            ActivatorRegistry registry = new DefaultActivatorRegistry(activators);
+            Container container = new DefaultContainer(registry);
+            IOC.initialize_with(container);
+        }
 
-            CatalogTasks catalog_tasks = new StubViewMainDepartmentTasks();
+        static void register_front_controller()
+        {
+            registering_activator_for<FrontController>(() => new DefaultFrontController(IOC.resolve.instance_of<CommandRegistry>()));
+            registering_activator_for<FrontControllerRequestFactory>(() => new StubRequestFactory());
+        }
 
+        static void register_commands()
+        {
+            registering_activator_for<ViewModelDisplay<IEnumerable<DepartmentItem>>>(
+                () => new ViewModelDisplay<IEnumerable<DepartmentItem>>(
+                    IOC.resolve.instance_of<ResponseEngine>(), request => IOC.resolve.instance_of<CatalogTasks>().get_main_departments())
+                );
 
+            registering_activator_for<CommandRegistry>(() => new DefaultCommandRegistry(all_commands()));
+        }
 
-            var view_main_department_command = new ViewMainDepartments(response_engine, catalog_tasks);
+        static void register_infrastructure()
+        {
+            registering_activator_for<ViewPathRegistry>(() => new StubViewPathRegistry());
+            registering_activator_for<ViewFactory>(() => new DefaultViewFactory(
+                IOC.resolve.instance_of<ViewPathRegistry>(), BuildManager.CreateInstanceFromVirtualPath));
 
+            registering_activator_for<MapperRegistry>(() => new StubMapperRegistry());
+            registering_activator_for<ResponseEngine>(() => new DefaultResponseEngine(
+                IOC.resolve.instance_of<ViewFactory>(), (handler, preserve_form) => HttpContext.Current.Server.Transfer(handler, preserve_form)));
+        }
 
-            Predicate<Request> view_main_department_command_predicate = request => true;
+        static void register_tasks()
+        {
+            registering_activator_for<CatalogTasks>(() => new StubViewMainDepartmentTasks());
+        }
 
-            var default_view_main_department_command = new DefaultCommand(view_main_department_command_predicate, view_main_department_command);
-            var default_view_sub_department_command = new DefaultCommand(request => true, new ViewMainDepartments(response_engine, catalog_tasks));
-            var default_view_department_product = new DefaultCommand(request => true, new ViewDepartmentProducts(response_engine, catalog_tasks));
+        static IEnumerable<Command> all_commands()
+        {
+            yield return new DefaultCommand(request => true, IOC.resolve.instance_of<ViewModelDisplay<IEnumerable<DepartmentItem>>>()); 
+        }
 
-            var shopping_card_tasks = new StubShoppingCartTask();
-            var default_add_products = new DefaultCommand(request => true, new AddToCart(response_engine, shopping_card_tasks));
-
-            IList<Command> commands = new List<Command>();
-            commands.Add(default_view_main_department_command);
-            commands.Add(default_view_sub_department_command);
-            commands.Add(default_view_department_product);
-            commands.Add(default_add_products);
-
-            var command_registry = new DefaultCommandRegistry(commands);
-          
-            FrontController front_controller = new DefaultFrontController(command_registry);
-
-
-            dictActivators.Add(typeof(FrontController), new FunctionalInstanceActivator(() => front_controller));
-            dictActivators.Add(typeof(TransferBehaviour), new FunctionalInstanceActivator(() => transfer_bahavior));
-            dictActivators.Add(typeof(CommandRegistry), new FunctionalInstanceActivator(() => command_registry));
-            dictActivators.Add(typeof(ViewFactory), new FunctionalInstanceActivator(() => view_factory));
-            dictActivators.Add(typeof(ResponseEngine), new FunctionalInstanceActivator(() => response_engine));
-            var front_controller_request_factory = new StubRequestFactory();
-            dictActivators.Add(typeof(FrontControllerRequestFactory), new FunctionalInstanceActivator(() => front_controller_request_factory));
-
-            
+        static void registering_activator_for<ContractType>(Func<object> activator)
+        {
+            activators.Add(typeof (ContractType), new FunctionalInstanceActivator(activator));
         }
     }
 }
