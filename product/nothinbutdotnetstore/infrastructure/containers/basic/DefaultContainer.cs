@@ -21,6 +21,7 @@ namespace nothinbutdotnetstore.infrastructure.containers.basic
         public object instance_of(Type dependency_type)
         {
             var activator = activator_registry.get_activator_for(dependency_type);
+            
             try
             {
                 return activator.create();
