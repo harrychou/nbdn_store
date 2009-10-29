@@ -49,6 +49,7 @@
     <Compile Include="dto\DepartmentItem.cs" />
     <Compile Include="dto\LineItem.cs" />
     <Compile Include="dto\ProductItem.cs" />
+    <Compile Include="infrastructure\Command.cs" />
     <Compile Include="infrastructure\containers\basic\ActivatorCreationException.cs" />
     <Compile Include="infrastructure\containers\basic\DefaultContainer.cs" />
     <Compile Include="infrastructure\containers\basic\ActivatorRegistry.cs" />
@@ -57,8 +58,13 @@
     <Compile Include="infrastructure\Mapper.cs" />
     <Compile Include="tasks\CatalogTasks.cs" />
     <Compile Include="tasks\ShoppingCartTask.cs" />
+    <Compile Include="tasks\startup\ConfigureApplicationRoutes.cs" />
     <Compile Include="tasks\startup\ContainerCoreService.cs" />
+    <Compile Include="tasks\startup\StartupCommand.cs" />
+    <Compile Include="tasks\startup\ConfigureFrontController.cs" />
+    <Compile Include="tasks\startup\ConfigureServiceLayer.cs" />
     <Compile Include="tasks\startup\StartUp.cs" />
+    <Compile Include="tasks\startup\ConfigureViewEngine.cs" />
     <Compile Include="web\application\AddToCart.cs" />
     <Compile Include="web\application\ApplicationCommand.cs" />
     <Compile Include="web\application\DataKeys.cs" />
