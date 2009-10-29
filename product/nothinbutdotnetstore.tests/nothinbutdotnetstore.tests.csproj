@@ -70,11 +70,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="infrastructure\ActivatorRegistrySpecs.cs" />
+    <Compile Include="infrastructure\DefaultContainerSpecs.cs" />
+    <Compile Include="infrastructure\FunctionalActivatorSpecs.cs" />
+    <Compile Include="tasks\StartupSpecs.cs" />
     <Compile Include="utility\empty_test_fixture_for_test_driven.cs" />
     <Compile Include="utility\ObjectMother.cs" />
     <Compile Include="web\AddToCartSpecs.cs" />
     <Compile Include="web\CommandRegistrySpecs.cs" />
     <Compile Include="web\CommandSpecs.cs" />
+    <Compile Include="web\ViewModelSpecs.cs" />
     <Compile Include="web\RequestSpecs.cs" />
     <Compile Include="web\ResponseEngineSpecs.cs" />
     <Compile Include="web\ViewFactorySpecs.cs" />
@@ -92,7 +97,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="dto\" />
-    <Folder Include="infrastructure\" />
     <Folder Include="Properties\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
