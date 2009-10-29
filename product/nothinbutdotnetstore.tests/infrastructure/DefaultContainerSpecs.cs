@@ -50,27 +50,28 @@ namespace nothinbutdotnetstore.tests.infrastructure
          }
 
          [Concern(typeof(DefaultContainer))]
-         public class when_requesting_an_implementation_of_an_interface : concern
+         public class when_requesting_an_instance_of_an_interface : concern
          {
              because b = () =>
              {
-                 test = sut.instance_of<IDbConnection>();
+                 test = sut.instance_of(typeof(SimpleInterface));
              };
 
 
-             it should_return_an_instance_of_a_generic_type = () =>
+             it should_return_an_instance_of_a_type = () =>
              {
-                 test.should_be_an_instance_of<IDbConnection>();
+                 test.should_be_an_instance_of<SimpleInterfaceImplementation>();
 
              };
 
-
-             static IDbConnection test;
+             static object test;
          }
-
      }
 
      public class OurClass {
          public OurClass() {}
      }
+
+    public interface SimpleInterface{}
+    public class SimpleInterfaceImplementation:SimpleInterface{}
  }
