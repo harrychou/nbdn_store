@@ -72,7 +72,6 @@
   <ItemGroup>
     <Compile Include="utility\empty_test_fixture_for_test_driven.cs" />
     <Compile Include="utility\ObjectMother.cs" />
-
     <Compile Include="web\AddToCartSpecs.cs" />
     <Compile Include="web\CommandRegistrySpecs.cs" />
     <Compile Include="web\CommandSpecs.cs" />
@@ -93,6 +92,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="dto\" />
+    <Folder Include="infrastructure\" />
     <Folder Include="Properties\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
