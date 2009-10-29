@@ -49,6 +49,7 @@
     <Compile Include="dto\DepartmentItem.cs" />
     <Compile Include="dto\LineItem.cs" />
     <Compile Include="dto\ProductItem.cs" />
+    <Compile Include="infrastructure\containers\basic\ActivationInfo.cs" />
     <Compile Include="infrastructure\containers\basic\ActivatorCreationException.cs" />
     <Compile Include="infrastructure\containers\basic\DefaultContainer.cs" />
     <Compile Include="infrastructure\containers\basic\ActivatorRegistry.cs" />
