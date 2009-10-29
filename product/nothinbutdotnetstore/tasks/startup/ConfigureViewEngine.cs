@@ -7,9 +7,9 @@ namespace nothinbutdotnetstore.tasks.startup
 {
     public class ConfigureViewEngine : StartupCommand
     {
-        private readonly DefaultContainerCoreService container_core_service;
+        private readonly ContainerCoreService container_core_service;
 
-        public ConfigureViewEngine(DefaultContainerCoreService container_core_service)
+        public ConfigureViewEngine(ContainerCoreService container_core_service)
         {
             this.container_core_service = container_core_service;
         }
