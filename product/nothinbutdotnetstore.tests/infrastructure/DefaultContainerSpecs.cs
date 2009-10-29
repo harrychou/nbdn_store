@@ -1,3 +1,4 @@
+ using System.Data;
  using developwithpassion.bdd.contexts;
  using developwithpassion.bdd.harnesses.mbunit;
  using developwithpassion.bdddoc.core;
@@ -47,6 +48,26 @@ namespace nothinbutdotnetstore.tests.infrastructure
 
              static object test;
          }
+
+         [Concern(typeof(DefaultContainer))]
+         public class when_requesting_an_implementation_of_an_interface : concern
+         {
+             because b = () =>
+             {
+                 test = sut.instance_of<IDbConnection>();
+             };
+
+
+             it should_return_an_instance_of_a_generic_type = () =>
+             {
+                 test.should_be_an_instance_of<IDbConnection>();
+
+             };
+
+
+             static IDbConnection test;
+         }
+
      }
 
      public class OurClass {
