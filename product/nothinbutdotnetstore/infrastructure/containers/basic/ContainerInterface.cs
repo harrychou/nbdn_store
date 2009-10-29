@@ -8,12 +8,11 @@ namespace nothinbutdotnetstore.infrastructure.containers.basic
         object instance_of(Type item);
     }
 
-    public class DefaultContainer: ContainerInterface  {
-        public DefaultContainer() {}
-
+    public class DefaultContainer : ContainerInterface
+    {
         public T instance_of<T>()
         {
-            return Activator.CreateInstance<T>();
+            return (T)instance_of(typeof (T));
         }
 
         public object instance_of(Type item)

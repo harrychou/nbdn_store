@@ -15,38 +15,27 @@ namespace nothinbutdotnetstore.tests.infrastructure
          [Concern(typeof(DefaultContainer))]
          public class when_requesting_an_instance_of_a_generic_type : concern
          {
-             context c = () =>
-             {
-                
-             };
-
              because b = () =>
              {
-                 test = sut.instance_of<OurClass>();
+                 result = sut.instance_of<OurClass>();
              };
 
         
              it should_return_an_instance_of_a_generic_type = () =>
              {
-                 test.should_be_an_instance_of<OurClass>();                           
+                 result.should_be_an_instance_of<OurClass>();                           
             
              };
 
-             static OurClass test;
+             static OurClass result;
          }
 
          [Concern(typeof(DefaultContainer))]
          public class when_requesting_an_instance_of_a_type : concern
          {
-             context c = () =>
-             {
-
-
-             };
-
              because b = () =>
              {
-                 test = (OurClass)sut.instance_of(typeof(OurClass));
+                 test = sut.instance_of(typeof(OurClass));
              };
 
 
@@ -56,7 +45,7 @@ namespace nothinbutdotnetstore.tests.infrastructure
 
              };
 
-             static OurClass test;
+             static object test;
          }
      }
 
