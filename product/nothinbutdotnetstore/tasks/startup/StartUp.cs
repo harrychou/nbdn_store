@@ -19,13 +19,11 @@ namespace nothinbutdotnetstore.tasks.startup
         static public void run()
         {
             activators = new Dictionary<Type, InstanceActivator>();
+            var container = initialize_the_container();
 
-            Container container = initialize_the_container();
-
-            register_service_tasks();
+            register_service_tasks(container);
             register_view_engine_components(container);
             register_command_components(container);
-
             register_front_controller_components(container);
         }
 
@@ -51,7 +49,7 @@ namespace nothinbutdotnetstore.tasks.startup
                 (handler, preserve_form) => HttpContext.Current.Server.Transfer(handler, preserve_form)));
         }
 
-        private static void register_service_tasks()
+        private static void register_service_tasks(Container container)
         {
             register_an_activator_for<CatalogTasks>(() => new StubViewMainDepartmentTasks());
         }

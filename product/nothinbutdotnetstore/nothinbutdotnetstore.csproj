@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{922EF2FE-820B-4ED5-9D64-7D716E135719}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -57,6 +57,7 @@
     <Compile Include="infrastructure\Mapper.cs" />
     <Compile Include="tasks\CatalogTasks.cs" />
     <Compile Include="tasks\ShoppingCartTask.cs" />
+    <Compile Include="tasks\startup\ContainerCoreService.cs" />
     <Compile Include="tasks\startup\StartUp.cs" />
     <Compile Include="web\application\AddToCart.cs" />
     <Compile Include="web\application\ApplicationCommand.cs" />
