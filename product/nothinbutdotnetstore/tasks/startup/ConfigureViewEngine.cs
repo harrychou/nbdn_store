@@ -7,20 +7,20 @@ namespace nothinbutdotnetstore.tasks.startup
 {
     public class ConfigureViewEngine : StartupCommand
     {
-        private readonly DefaultContainerCoreService container_core_service;
+        ContainerCoreService core_services;
 
-        public ConfigureViewEngine(DefaultContainerCoreService container_core_service)
+        public ConfigureViewEngine(ContainerCoreService core_services)
         {
-            this.container_core_service = container_core_service;
+            this.core_services = core_services;
         }
 
         public void run()
         {
-            container_core_service.register_an_activator_for<ViewPathRegistry>(() => new StubViewPathRegistry());
-            container_core_service.register_an_activator_for<ViewFactory>(() => new DefaultViewFactory(container_core_service.resolve<ViewPathRegistry>(),
+            core_services.register_an_activator_for<ViewPathRegistry>(() => new StubViewPathRegistry());
+            core_services.register_an_activator_for<ViewFactory>(() => new DefaultViewFactory(core_services.resolve<ViewPathRegistry>(),
                 BuildManager.CreateInstanceFromVirtualPath));
 
-            container_core_service.register_an_activator_for<ResponseEngine>(() => new DefaultResponseEngine(container_core_service.resolve<ViewFactory>(),
+            core_services.register_an_activator_for<ResponseEngine>(() => new DefaultResponseEngine(core_services.resolve<ViewFactory>(),
                 (handler, preserve_form) => HttpContext.Current.Server.Transfer(handler, preserve_form)));
         }
 

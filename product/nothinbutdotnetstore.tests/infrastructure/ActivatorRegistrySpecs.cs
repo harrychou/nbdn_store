@@ -4,7 +4,6 @@
  using developwithpassion.bdd.harnesses.mbunit;
  using developwithpassion.bdddoc.core;
  using nothinbutdotnetstore.infrastructure.containers.basic;
- using Rhino.Mocks;
 
 namespace nothinbutdotnetstore.tests.infrastructure
  {   
@@ -49,6 +48,31 @@ namespace nothinbutdotnetstore.tests.infrastructure
 
              static InstanceActivator activator_that_can_instantiate_the_type;
              static SimpleInterfaceImplementation basicObject;
+         }
+
+         [Concern(typeof(DefaultActivatorRegistry))]
+         public class when_getting_an_activator_for_a_type_and_it_does_not_have_the_activator : concern
+         {
+             context c = () =>
+             {
+                 activator_that_can_instantiate_the_type = an<InstanceActivator>();
+                 registry = the_dependency<IDictionary<Type, InstanceActivator>>();
+             };
+
+             because b = () =>
+             {
+                 doing(() => result = sut.get_activator_for(typeof(SimpleInterfaceImplementation)));
+             };
+
+
+             it should_return_the_activator_to_the_client = () =>
+             {
+                 exception_thrown_by_the_sut.should_be_an_instance_of<ActivatorNotFoundException>();
+             };
+
+             static InstanceActivator activator_that_can_instantiate_the_type;
+             static SimpleInterfaceImplementation basicObject;
+             static IDictionary<Type, InstanceActivator> registry;
          }
 
          public interface SimpleInterface { }

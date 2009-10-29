@@ -4,16 +4,16 @@ namespace nothinbutdotnetstore.tasks.startup
 {
     public class ConfigureServiceLayer : StartupCommand
     {
-        ContainerCoreService container_core_service;
+        ContainerCoreService core_services;
 
-        public ConfigureServiceLayer(ContainerCoreService container_core_service)
+        public ConfigureServiceLayer(ContainerCoreService core_services)
         {
-            this.container_core_service = container_core_service;
+            this.core_services = core_services;
         }
 
         public void run()
         {
-            container_core_service.register_an_activator_for<CatalogTasks>(() => new StubViewMainDepartmentTasks());
+            core_services.register_an_activator_for<CatalogTasks>(() => new StubViewMainDepartmentTasks());
         }
     }
 }

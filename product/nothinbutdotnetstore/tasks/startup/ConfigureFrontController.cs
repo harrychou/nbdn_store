@@ -5,18 +5,18 @@ namespace nothinbutdotnetstore.tasks.startup
 {
     public class ConfigureFrontController : StartupCommand
     {
-        private readonly ContainerCoreService container_core_service;
+        ContainerCoreService core_services;
 
-        public ConfigureFrontController(ContainerCoreService container_core_service)
+        public ConfigureFrontController(ContainerCoreService core_services)
         {
-            this.container_core_service = container_core_service;
+            this.core_services = core_services;
         }
 
         public void run()
         {
-            container_core_service.register_an_activator_for<MapperRegistry>(() => new StubMapperRegistry());
-            container_core_service.register_an_activator_for<FrontController>(() => new DefaultFrontController(container_core_service.resolve<CommandRegistry>()));
-            container_core_service.register_an_activator_for<FrontControllerRequestFactory>(() => new StubRequestFactory());
+            core_services.register_an_activator_for<MapperRegistry>(() => new StubMapperRegistry());
+            core_services.register_an_activator_for<FrontController>(() => new DefaultFrontController(core_services.resolve<CommandRegistry>()));
+            core_services.register_an_activator_for<FrontControllerRequestFactory>(() => new StubRequestFactory());
         }
     }
 }

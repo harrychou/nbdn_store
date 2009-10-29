@@ -9,19 +9,19 @@ namespace nothinbutdotnetstore.tasks.startup
     {
         void register_an_activator_for<ContractType>(Func<object> activator);
         Dependency resolve<Dependency>();
+        Container container { get; }
     }
 
     public class DefaultContainerCoreService : ContainerCoreService {
 
         private IDictionary<Type, InstanceActivator> activators;
-        private Container container;
+        public Container container { get; private set; }
 
         public DefaultContainerCoreService()
         {
             this.activators = activators = new Dictionary<Type, InstanceActivator>();
             ActivatorRegistry registry = new DefaultActivatorRegistry(activators);
             container = new DefaultContainer(registry);
-            IOC.initialize_with(container);
         }
 
         public void register_an_activator_for<ContractType>(Func<object> activator)
