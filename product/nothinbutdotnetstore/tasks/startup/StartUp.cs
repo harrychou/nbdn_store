@@ -20,53 +20,52 @@ namespace nothinbutdotnetstore.tasks.startup
         {
             initialize_container();
 
-            register_tasks();
-
-            register_infrastructure();
-
-            register_commands();
-
-            register_front_controller();
         }
 
         static void initialize_container()
         {
             activators = new Dictionary<Type, InstanceActivator>();
+
+            var container = initialize_the_container();
+
+            register_service_tasks(container);
+            register_view_engine_components(container);
+            register_command_components(container);
+            register_front_controller_components(container);
+        }
+
+        private static void register_front_controller_components(Container container) {
+            register_an_activator_for<MapperRegistry>(() => new StubMapperRegistry());
+            register_an_activator_for<FrontController>(() => new DefaultFrontController(container.instance_of<CommandRegistry>()));
+            register_an_activator_for<FrontControllerRequestFactory>(() => new StubRequestFactory());
+        }
+
+        private static void register_command_components(Container container) {
+            register_an_activator_for<ViewModelDisplay<IEnumerable<DepartmentItem>>>(
+                () => new ViewModelDisplay<IEnumerable<DepartmentItem>>(container.instance_of<ResponseEngine>(), request => container.instance_of<CatalogTasks>().get_main_departments()));
+
+            register_an_activator_for<CommandRegistry>(() => new DefaultCommandRegistry(all_commands()));
+        }
+
+        private static void register_view_engine_components(Container container) {
+            register_an_activator_for<ViewPathRegistry>(() => new StubViewPathRegistry());
+            register_an_activator_for<ViewFactory>(() => new DefaultViewFactory(container.instance_of<ViewPathRegistry>(),
+                BuildManager.CreateInstanceFromVirtualPath));
+
+            register_an_activator_for<ResponseEngine>(() => new DefaultResponseEngine(container.instance_of<ViewFactory>(),
+                (handler, preserve_form) => HttpContext.Current.Server.Transfer(handler, preserve_form)));
+        }
+
+        private static void register_service_tasks(Container container)
+        {
+            register_an_activator_for<CatalogTasks>(() => new StubViewMainDepartmentTasks());
+        }
+
+        private static Container initialize_the_container() {
             ActivatorRegistry registry = new DefaultActivatorRegistry(activators);
             Container container = new DefaultContainer(registry);
             IOC.initialize_with(container);
-        }
-
-        static void register_front_controller()
-        {
-            registering_activator_for<FrontController>(() => new DefaultFrontController(IOC.resolve.instance_of<CommandRegistry>()));
-            registering_activator_for<FrontControllerRequestFactory>(() => new StubRequestFactory());
-        }
-
-        static void register_commands()
-        {
-            registering_activator_for<ViewModelDisplay<IEnumerable<DepartmentItem>>>(
-                () => new ViewModelDisplay<IEnumerable<DepartmentItem>>(
-                    IOC.resolve.instance_of<ResponseEngine>(), request => IOC.resolve.instance_of<CatalogTasks>().get_main_departments())
-                );
-
-            registering_activator_for<CommandRegistry>(() => new DefaultCommandRegistry(all_commands()));
-        }
-
-        static void register_infrastructure()
-        {
-            registering_activator_for<ViewPathRegistry>(() => new StubViewPathRegistry());
-            registering_activator_for<ViewFactory>(() => new DefaultViewFactory(
-                IOC.resolve.instance_of<ViewPathRegistry>(), BuildManager.CreateInstanceFromVirtualPath));
-
-            registering_activator_for<MapperRegistry>(() => new StubMapperRegistry());
-            registering_activator_for<ResponseEngine>(() => new DefaultResponseEngine(
-                IOC.resolve.instance_of<ViewFactory>(), (handler, preserve_form) => HttpContext.Current.Server.Transfer(handler, preserve_form)));
-        }
-
-        static void register_tasks()
-        {
-            registering_activator_for<CatalogTasks>(() => new StubViewMainDepartmentTasks());
+            return container;
         }
 
         static IEnumerable<Command> all_commands()
@@ -74,7 +73,7 @@ namespace nothinbutdotnetstore.tasks.startup
             yield return new DefaultCommand(request => true, IOC.resolve.instance_of<ViewModelDisplay<IEnumerable<DepartmentItem>>>()); 
         }
 
-        static void registering_activator_for<ContractType>(Func<object> activator)
+        static void register_an_activator_for<ContractType>(Func<object> activator)
         {
             activators.Add(typeof (ContractType), new FunctionalInstanceActivator(activator));
         }
