@@ -13,7 +13,7 @@ namespace nothinbutdotnetstore.web.application
             this.response_engine = response_engine;
             this.model_query = model_query;
         }
-
+        
         public void process(Request request)
         {
             response_engine.display(model_query(request));
