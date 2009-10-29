@@ -5,7 +5,7 @@ namespace nothinbutdotnetstore.tasks.startup
 {
     public class StartUp
     {
-        static string pipeline_configuration_file= Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "startup_pipeline.txt");
+        static string pipeline_configuration_file= Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "pipeline_configuration.txt");
 
         static public void run()
         {
