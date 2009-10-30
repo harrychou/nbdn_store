@@ -46,6 +46,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="domain\CartCorral.cs" />
+    <Compile Include="domain\CartItem.cs" />
+    <Compile Include="domain\CartItemFactory.cs" />
     <Compile Include="domain\Catalog.cs" />
     <Compile Include="domain\Product.cs" />
     <Compile Include="domain\ShoppingCart.cs" />
