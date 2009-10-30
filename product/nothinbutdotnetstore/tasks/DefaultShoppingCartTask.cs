@@ -1,22 +1,22 @@
-using System;
 using nothinbutdotnetstore.domain;
 using nothinbutdotnetstore.dto;
 
 namespace nothinbutdotnetstore.tasks
 {
-    public class DefaultShoppingCartTask : ShoppingCartTask {
-        private readonly ShoppingCart shopping_cart;
-        private readonly Catalog catalog;
+    public class DefaultShoppingCartTask : ShoppingCartTask
+    {
+        CartCorral cart_corral;
+        Catalog catalog;
 
-        public DefaultShoppingCartTask(ShoppingCart shopping_cart, Catalog catalog)
+        public DefaultShoppingCartTask(CartCorral cart_corral, Catalog catalog)
         {
-            this.shopping_cart = shopping_cart;
+            this.cart_corral = cart_corral;
             this.catalog = catalog;
         }
 
         public void add_product_to_cart(LineItem line_item)
         {
-            shopping_cart.add_item(catalog.get_product(line_item.product_id), line_item.quantity);
+            cart_corral.get_cart().add(catalog.get_product(line_item.product_id), line_item.quantity);
         }
     }
 }

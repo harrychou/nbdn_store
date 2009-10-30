@@ -22,7 +22,8 @@ namespace nothinbutdotnetstore.tests.tasks
          {
              context c = () =>
              {
-                 shopping_cart = the_dependency<ShoppingCart>();
+                 shopping_cart = an<ShoppingCart>();
+                 cart_corral = the_dependency<CartCorral>();
                  catalog = the_dependency<Catalog>();
 
                  product_to_be_added = an<Product>();
@@ -32,6 +33,7 @@ namespace nothinbutdotnetstore.tests.tasks
                      quantity = 5
                  };
 
+                 cart_corral.Stub(corral => corral.get_cart()).Return(shopping_cart);
                  catalog.Stub(cat => cat.get_product(line_item_to_add.product_id)).Return(product_to_be_added);
             
              };
@@ -44,13 +46,14 @@ namespace nothinbutdotnetstore.tests.tasks
         
              it should_add_a_product_and_quantity_to_the_shopping_cart = () =>
              {
-                 shopping_cart.received(cart => cart.add_item(product_to_be_added, line_item_to_add.quantity));
+                 shopping_cart.received(cart => cart.add(product_to_be_added, line_item_to_add.quantity));
              };
 
              private static ShoppingCart shopping_cart;
              private static Product product_to_be_added;
              private static LineItem line_item_to_add;
              private static Catalog catalog;
+             static CartCorral cart_corral;
          }
      }
  }
