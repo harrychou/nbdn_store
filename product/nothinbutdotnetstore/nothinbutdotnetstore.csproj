@@ -76,6 +76,7 @@
     <Compile Include="tasks\startup\StartupCommandChain.cs" />
     <Compile Include="tasks\startup\StartupCommandFactory.cs" />
     <Compile Include="tasks\startup\TypeMapper.cs" />
+    <Compile Include="tasks\stubs\StubShoppingCartTask.cs" />
     <Compile Include="web\application\AddToCart.cs" />
     <Compile Include="web\application\ApplicationCommand.cs" />
     <Compile Include="web\application\DataKeys.cs" />
