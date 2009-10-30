@@ -79,7 +79,6 @@
     <Content Include="Global.asax" />
     <Content Include="views\OrderConfirm.aspx" />
     <Content Include="views\OrderInfo.aspx" />
-    <Content Include="views\OrderThanks.aspx" />
     <Content Include="views\ProductBrowser.aspx" />
     <Content Include="views\ProductDetail.aspx" />
     <Content Include="views\ProductSearch.ascx" />
