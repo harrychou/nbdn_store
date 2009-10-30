@@ -60,9 +60,12 @@
     <Compile Include="infrastructure\Mapper.cs" />
     <Compile Include="tasks\CatalogTasks.cs" />
     <Compile Include="tasks\ShoppingCartTask.cs" />
+    <Compile Include="tasks\startup\BadStartupCommand.cs" />
+    <Compile Include="tasks\startup\ConfigureApplicationCommands.cs" />
     <Compile Include="tasks\startup\ConfigureApplicationRoutes.cs" />
     <Compile Include="tasks\startup\ConfigureCoreServices.cs" />
     <Compile Include="tasks\startup\CoreServices.cs" />
+    <Compile Include="tasks\startup\StartupCommandTypeNameResolver.cs" />
     <Compile Include="tasks\startup\Start.cs" />
     <Compile Include="tasks\startup\StartupCommand.cs" />
     <Compile Include="tasks\startup\ConfigureFrontController.cs" />
@@ -71,6 +74,7 @@
     <Compile Include="tasks\startup\ConfigureViewEngine.cs" />
     <Compile Include="tasks\startup\StartupCommandChain.cs" />
     <Compile Include="tasks\startup\StartupCommandFactory.cs" />
+    <Compile Include="tasks\startup\TypeMapper.cs" />
     <Compile Include="web\application\AddToCart.cs" />
     <Compile Include="web\application\ApplicationCommand.cs" />
     <Compile Include="web\application\DataKeys.cs" />
@@ -79,6 +83,8 @@
     <Compile Include="web\infrastructure\PageFactory.cs" />
     <Compile Include="web\infrastructure\DefaultRequest.cs" />
     <Compile Include="web\infrastructure\MapperRegistry.cs" />
+    <Compile Include="web\infrastructure\Routes.cs" />
+    <Compile Include="web\infrastructure\RouteTable.cs" />
     <Compile Include="web\infrastructure\stubs\StubMapperRegistry.cs" />
     <Compile Include="web\infrastructure\stubs\StubViewPathRegistry.cs" />
     <Compile Include="web\infrastructure\TransferBehaviour.cs" />

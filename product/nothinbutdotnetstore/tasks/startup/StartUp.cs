@@ -11,14 +11,5 @@ namespace nothinbutdotnetstore.tasks.startup
         {
             Start.by_running_all_commands_in(pipeline_configuration_file);
         }
-
-        static void specific()
-        {
-            Start.by_running<ConfigureCoreServices>()
-                .followed_by<ConfigureServiceLayer>()
-                .followed_by<ConfigureViewEngine>()
-                .followed_by<ConfigureFrontController>()
-                .finish_by<ConfigureApplicationRoutes>();
-        }
     }
 }

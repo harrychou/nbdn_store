@@ -8,6 +8,8 @@ namespace nothinbutdotnetstore.tasks.startup
     public interface ContainerCoreService
     {
         void register_an_activator_for<ContractType>(Func<object> activator);
+        void register<ContractType,Implementation>();
+        void register<Implementation>();
         Dependency resolve<Dependency>();
         Container container { get; }
     }
@@ -22,6 +24,16 @@ namespace nothinbutdotnetstore.tasks.startup
             this.activators = activators = new Dictionary<Type, InstanceActivator>();
             ActivatorRegistry registry = new DefaultActivatorRegistry(activators);
             container = new DefaultContainer(registry);
+        }
+
+        public void register<ContractType, Implementation>()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void register<Implementation>()
+        {
+            throw new NotImplementedException();
         }
 
         public void register_an_activator_for<ContractType>(Func<object> activator)
