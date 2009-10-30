@@ -45,12 +45,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="domain\Address.cs" />
     <Compile Include="domain\CartCorral.cs" />
     <Compile Include="domain\CartItem.cs" />
     <Compile Include="domain\CartItemFactory.cs" />
     <Compile Include="domain\Catalog.cs" />
+    <Compile Include="domain\City.cs" />
+    <Compile Include="domain\Customer.cs" />
     <Compile Include="domain\Product.cs" />
     <Compile Include="domain\ShoppingCart.cs" />
+    <Compile Include="domain\State.cs" />
     <Compile Include="dto\CartItem.cs" />
     <Compile Include="dto\DepartmentItem.cs" />
     <Compile Include="dto\LineItem.cs" />
@@ -67,6 +71,7 @@
     <Compile Include="infrastructure\containers\basic\RegisterInContainerAttribute.cs" />
     <Compile Include="infrastructure\EnumerableExtensions.cs" />
     <Compile Include="infrastructure\Mapper.cs" />
+    <Compile Include="infrastructure\validation\RequiredFieldAttribute.cs" />
     <Compile Include="tasks\CatalogTasks.cs" />
     <Compile Include="tasks\DefaultShoppingCartTask.cs" />
     <Compile Include="tasks\ShoppingCartTask.cs" />
