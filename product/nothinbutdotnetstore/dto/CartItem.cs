@@ -1,5 +1,3 @@
-using System;
-
 namespace nothinbutdotnetstore.dto
 {
     public class CartItem
