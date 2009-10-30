@@ -2,6 +2,9 @@ namespace nothinbutdotnetstore.domain
 {
     public class CartItem
     {
+        public virtual int quantity { get; protected set;}
+        public virtual Product product { get; protected set; }
+
         protected CartItem() {}
 
         public CartItem(Product product, int quantity)
@@ -29,8 +32,5 @@ namespace nothinbutdotnetstore.domain
         {
             return quantity*product.price;
         }
-
-        public virtual int quantity { get; protected set;}
-        public virtual Product product { get; protected set; }
     }
 }

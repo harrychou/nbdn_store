@@ -6,7 +6,7 @@ namespace nothinbutdotnetstore.domain
     public class ShoppingCart
     {
         CartItemFactory item_factory;
-        public virtual IList<CartItem> items { get; protected set; }
+        public virtual IList<CartItem> items { get; set; }
 
         public ShoppingCart() {}
 

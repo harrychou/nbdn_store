@@ -40,7 +40,7 @@ namespace nothinbutdotnetstore.tests.domain
          }
 
          [Concern(typeof(CartItem))]
-         public class when_checking_to_see_if_the_product_in_the_cart_item_is_in_the_cart_item : concern
+         public class when_determining_if_it_is_the_item_for_a_product : concern
          {
              context c = () =>
              {
@@ -54,7 +54,7 @@ namespace nothinbutdotnetstore.tests.domain
              };
 
         
-             it should_return_true = () =>
+             it should_base_the_decision_on_its_product = () =>
              {
                  result.should_be_equal_to(true);
              };
