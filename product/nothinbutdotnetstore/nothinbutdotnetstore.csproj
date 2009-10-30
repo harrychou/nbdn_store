@@ -52,6 +52,8 @@
     <Compile Include="infrastructure\CombinedCommand.cs" />
     <Compile Include="infrastructure\Command.cs" />
     <Compile Include="infrastructure\containers\basic\ActivatorCreationException.cs" />
+    <Compile Include="infrastructure\containers\basic\AutoWiringInstanceActivator.cs" />
+    <Compile Include="infrastructure\containers\basic\ConstructorResolver.cs" />
     <Compile Include="infrastructure\containers\basic\DefaultContainer.cs" />
     <Compile Include="infrastructure\containers\basic\ActivatorRegistry.cs" />
     <Compile Include="infrastructure\containers\basic\FunctionalInstanceActivator.cs" />
