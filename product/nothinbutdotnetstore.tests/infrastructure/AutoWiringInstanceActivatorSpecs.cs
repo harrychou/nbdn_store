@@ -30,7 +30,7 @@ namespace nothinbutdotnetstore.tests.infrastructure
 
             because b = () =>
             {
-                sut.create();
+                result = sut.create();
             };
 
 
@@ -43,7 +43,7 @@ namespace nothinbutdotnetstore.tests.infrastructure
                 item_with_dependencies.another_dependency.should_be_equal_to(another_dependency);
             };
 
-            static OurItemWithDependencies result;
+            static object result;
             static ConstructorResolver constructor_resolver;
             static IDbConnection connection;
             static IDbCommand command;
