@@ -45,6 +45,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="domain\CartCorral.cs" />
+    <Compile Include="domain\Catalog.cs" />
+    <Compile Include="domain\Product.cs" />
+    <Compile Include="domain\ShoppingCart.cs" />
     <Compile Include="dto\CartItem.cs" />
     <Compile Include="dto\DepartmentItem.cs" />
     <Compile Include="dto\LineItem.cs" />
@@ -62,6 +66,7 @@
     <Compile Include="infrastructure\EnumerableExtensions.cs" />
     <Compile Include="infrastructure\Mapper.cs" />
     <Compile Include="tasks\CatalogTasks.cs" />
+    <Compile Include="tasks\DefaultShoppingCartTask.cs" />
     <Compile Include="tasks\ShoppingCartTask.cs" />
     <Compile Include="tasks\startup\BadStartupCommand.cs" />
     <Compile Include="tasks\startup\ConfigureApplicationRoutes.cs" />
