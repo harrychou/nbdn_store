@@ -74,6 +74,7 @@
     <Compile Include="infrastructure\AutoWiringInstanceActivatorSpecs.cs" />
     <Compile Include="infrastructure\DefaultContainerSpecs.cs" />
     <Compile Include="infrastructure\FunctionalActivatorSpecs.cs" />
+    <Compile Include="tasks\ShoppingCartTaskSpecs.cs" />
     <Compile Include="tasks\StartupCommandChainSpecs.cs" />
     <Compile Include="tasks\ApplicationConventionPolicyChecker.cs" />
     <Compile Include="tasks\StartupSpecs.cs" />
