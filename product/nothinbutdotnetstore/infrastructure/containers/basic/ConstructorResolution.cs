@@ -3,7 +3,7 @@ using System.Reflection;
 
 namespace nothinbutdotnetstore.infrastructure.containers.basic
 {
-    public interface ConstructorResolver    {
+    public interface ConstructorResolution    {
         ConstructorInfo pick_constructor_for(Type type);
     }
 }

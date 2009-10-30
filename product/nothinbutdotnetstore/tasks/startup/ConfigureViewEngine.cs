@@ -1,7 +1,6 @@
 using System.Web;
 using System.Web.Compilation;
 using nothinbutdotnetstore.web.infrastructure;
-using nothinbutdotnetstore.web.infrastructure.stubs;
 
 namespace nothinbutdotnetstore.tasks.startup
 {
@@ -16,13 +15,10 @@ namespace nothinbutdotnetstore.tasks.startup
 
         public void run()
         {
-            core_services.register_an_activator_for<ViewPathRegistry>(() => new StubViewPathRegistry());
-            core_services.register_an_activator_for<ViewFactory>(() => new DefaultViewFactory(core_services.resolve<ViewPathRegistry>(),
-                BuildManager.CreateInstanceFromVirtualPath));
-
-            core_services.register_an_activator_for<ResponseEngine>(() => new DefaultResponseEngine(core_services.resolve<ViewFactory>(),
-                (handler, preserve_form) => HttpContext.Current.Server.Transfer(handler, preserve_form)));
+            TransferBehaviour transfer = (handler, preserve_form) => HttpContext.Current.Server.Transfer(handler, preserve_form);
+            PageFactory page_factory = BuildManager.CreateInstanceFromVirtualPath;
+            core_services.register_an_activator_for<PageFactory>(() => page_factory);
+            core_services.register_an_activator_for<TransferBehaviour>(() => transfer);
         }
-
     }
 }

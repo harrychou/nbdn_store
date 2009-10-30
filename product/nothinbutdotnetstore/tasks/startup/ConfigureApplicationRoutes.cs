@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using nothinbutdotnetstore.dto;
 using nothinbutdotnetstore.web.application;
 using nothinbutdotnetstore.web.infrastructure;
 

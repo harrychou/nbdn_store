@@ -1,6 +1,4 @@
 ﻿ConfigureCoreServices
-ConfigureServiceLayer
 ConfigureViewEngine
-ConfigureFrontController
-ConfigureApplicationCommands
+ConfigureAutoWiring
 ConfigureApplicationRoutes

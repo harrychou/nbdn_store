@@ -1,28 +1,28 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
+using System.Linq;
 using developwithpassion.commons.core.infrastructure.containers;
 
 namespace nothinbutdotnetstore.infrastructure.containers.basic
 {
     public class AutoWiringInstanceActivator : InstanceActivator
     {
-        readonly ConstructorResolver _constructorResolver;
-        readonly Type _typeToImplement;
+        ConstructorResolution constructor_resolution;
+        Type type_to_implement;
 
-        public AutoWiringInstanceActivator(ConstructorResolver constructor_resolver, Type type_to_implement)
+        public AutoWiringInstanceActivator(ConstructorResolution constructor_resolution, Type type_to_implement)
         {
-            _constructorResolver = constructor_resolver;
-            _typeToImplement = type_to_implement;
+            this.constructor_resolution = constructor_resolution;
+            this.type_to_implement = type_to_implement;
         }
 
         public object create()
         {
-            var constructor_info = _constructorResolver.pick_constructor_for(_typeToImplement);
-            List<object> param_list = new List<object>();
+            var constructor_info = constructor_resolution.pick_constructor_for(type_to_implement);
 
-            constructor_info.GetParameters().each(type => param_list.Add(IOC.resolve.instance_of(type.ParameterType)));
-            return Activator.CreateInstance(_typeToImplement, param_list.ToArray());
+            var parameters = constructor_info.GetParameters()
+                .Select(info => IOC.resolve.instance_of(info.ParameterType));
+
+            return Activator.CreateInstance(type_to_implement, parameters.ToArray());
         }
     }
 }
