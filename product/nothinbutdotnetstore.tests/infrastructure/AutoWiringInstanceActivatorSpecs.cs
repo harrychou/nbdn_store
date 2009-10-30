@@ -19,12 +19,12 @@ namespace nothinbutdotnetstore.tests.infrastructure
             context c = () =>
             {
                 constructor_resolver = the_dependency<ConstructorResolver>();
-                constructor_resolver.Stub(resolver => resolver.pick_constructor_for(typeof(OurItemWithDependencies))).Return(typeof(OurItemWithDependencies).greediest_contructor());
                 connection = container_dependency<IDbConnection>();
                 command = container_dependency<IDbCommand>();
                 reader = container_dependency<IDataReader>();
                 another_dependency = container_dependency<AnotherDependency>();
 
+                constructor_resolver.Stub(resolver => resolver.pick_constructor_for(typeof(OurItemWithDependencies))).Return(typeof(OurItemWithDependencies).greediest_contructor());
                 provide_a_basic_sut_constructor_argument(typeof(OurItemWithDependencies));
             };
 
@@ -69,9 +69,12 @@ namespace nothinbutdotnetstore.tests.infrastructure
 
         public class AnotherDependency
         {
+            IDbConnection connection;
+            public AnotherDependency() {}
 
-            public AnotherDependency()
+            public AnotherDependency(IDbConnection connection)
             {
+                this.connection = connection;
             }
         }
     }
