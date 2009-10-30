@@ -32,5 +32,10 @@ namespace nothinbutdotnetstore.tasks.startup
             chain = new CombinedCommand(chain, command_factory.create_command_from(command_type));
         }
 
+        public void run_all_commands_in(IEnumerable<Type> command_types)
+        {
+            command_types.each(type => add_command_for(type));
+            chain.run();
+        }
     }
 }

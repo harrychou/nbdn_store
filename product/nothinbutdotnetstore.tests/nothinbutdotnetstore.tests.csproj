@@ -73,6 +73,8 @@
     <Compile Include="infrastructure\ActivatorRegistrySpecs.cs" />
     <Compile Include="infrastructure\DefaultContainerSpecs.cs" />
     <Compile Include="infrastructure\FunctionalActivatorSpecs.cs" />
+    <Compile Include="tasks\StartupCommandChainSpecs.cs" />
+    <Compile Include="tasks\ApplicationConventionPolicyChecker.cs" />
     <Compile Include="tasks\StartupSpecs.cs" />
     <Compile Include="utility\empty_test_fixture_for_test_driven.cs" />
     <Compile Include="utility\ObjectMother.cs" />
@@ -86,7 +88,6 @@
     <Compile Include="web\ViewMainDepartmentsSpecs.cs" />
     <Compile Include="web\FrontControllerSpecs.cs" />
     <Compile Include="web\RequestHandlerSpecs.cs" />
-    <Compile Include="web\ViewModelDisplaySpec2.cs" />
     <Compile Include="web\ViewProductsSpecs.cs" />
     <Compile Include="web\MyViewModelSpecs.cs" />
     <Compile Include="web\ViewSubDepartmentsSpecs.cs" />

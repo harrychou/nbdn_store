@@ -13,7 +13,7 @@ namespace nothinbutdotnetstore.tasks.startup
 
         public void run()
         {
-            core_services.register_an_activator_for<CatalogTasks>(() => new StubViewMainDepartmentTasks());
+            core_services.register_an_activator_for<CatalogTasks>(() => new StubCatalogTasks());
         }
     }
 }
