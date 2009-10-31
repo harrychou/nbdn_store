@@ -40,6 +40,36 @@ namespace nothinbutdotnetstore.tests.infrastructure
             static PropertyInfo name_property;
         }
 
+        [Concern(typeof(RequiredFieldAttribute))]
+        public class when_validating_a_property_and_the_property_does_not_have_a_value : concern
+        {
+            context c = () =>
+            {
+                item_to_validate = new ItemToValidate();
+                name_property = typeof(ItemToValidate).GetProperty("name");
+            };
+
+            after_the_sut_has_been_created ac = () =>
+            {
+                sut.property_to_validate = name_property;
+            };
+
+            because b = () =>
+            {
+                result = sut.is_valid(item_to_validate);
+            };
+
+
+            it should_be_valid = () =>
+            {
+                result.should_be_false();
+            };
+
+            static bool result;
+            static ItemToValidate item_to_validate;
+            static PropertyInfo name_property;
+        }
+
         public class ItemToValidate
         {
             [RequiredField]

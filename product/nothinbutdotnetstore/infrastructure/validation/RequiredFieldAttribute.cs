@@ -8,7 +8,9 @@ namespace nothinbutdotnetstore.infrastructure.validation
     {
         public bool is_valid(object target)
         {
-            throw new NotImplementedException();
+            var value = property_to_validate.GetValue(target, null);
+
+            return value != null;
         }
 
         public PropertyInfo property_to_validate { get; set; }
