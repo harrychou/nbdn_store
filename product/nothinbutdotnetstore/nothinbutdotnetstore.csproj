@@ -71,6 +71,8 @@
     <Compile Include="infrastructure\containers\basic\RegisterInContainerAttribute.cs" />
     <Compile Include="infrastructure\EnumerableExtensions.cs" />
     <Compile Include="infrastructure\Mapper.cs" />
+    <Compile Include="infrastructure\validation\NotificationBag.cs" />
+    <Compile Include="infrastructure\validation\NotificationItem.cs" />
     <Compile Include="infrastructure\validation\RequiredFieldAttribute.cs" />
     <Compile Include="tasks\CatalogTasks.cs" />
     <Compile Include="tasks\DefaultShoppingCartTask.cs" />

@@ -77,12 +77,14 @@
     <Compile Include="infrastructure\AutoWiringInstanceActivatorSpecs.cs" />
     <Compile Include="infrastructure\DefaultContainerSpecs.cs" />
     <Compile Include="infrastructure\FunctionalActivatorSpecs.cs" />
+    <Compile Include="infrastructure\RequiredFieldAttributeSpecs.cs" />
     <Compile Include="tasks\ShoppingCartTaskSpecs.cs" />
     <Compile Include="tasks\StartupCommandChainSpecs.cs" />
     <Compile Include="tasks\ApplicationConventionPolicyChecker.cs" />
     <Compile Include="tasks\StartupSpecs.cs" />
     <Compile Include="utility\empty_test_fixture_for_test_driven.cs" />
     <Compile Include="utility\ObjectMother.cs" />
+    <Compile Include="utility\ReflectionUtility.cs" />
     <Compile Include="utility\TypeExtensions.cs" />
     <Compile Include="web\AddToCartSpecs.cs" />
     <Compile Include="web\CommandRegistrySpecs.cs" />
